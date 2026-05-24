@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="id">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
+      <title>DPMPTSP Jember - Onboarding</title>
+      <link rel="stylesheet" href="assets/css/style.css" />
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+   </head>
+   <body>
+      <header class="navbar">
+         <div class="container">
+            <div class="logo">
+               <img src="assets/img/logo.png" alt="Logo DPMPTSP" style="height: 40px" />
+            </div>
+            <button class="btn-outline" id="btn-nav-masuk">Masuk</button>
+         </div>
+      </header>
+
+      <main class="hero-section">
+         <div class="container hero-wrapper">
+            <div class="hero-text">
+               <h1>
+                  Jember Layanan <br />
+                  <span>Perizinan Terpadu</span>
+               </h1>
+               <p>Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu (DPMPTSP) merupakan Organisasi Perangkat Daerah yang memegang peranan menyelenggarakan pelayanan perizinan terpadu pada Pemerintah Kabupaten Jember.</p>
+               <button class="btn-primary" id="btn-masuk-utama">Masuk</button>
+            </div>
+
+            <div class="hero-image">
+               <div class="image-card">
+                  <img src="assets/img/onboarding.png" alt="Jember Baru Jember Maju" />
+               </div>
+            </div>
+         </div>
+      </main>
+
+      <div id="loginModal" class="modal-overlay">
+         <div class="modal-content">
+            <div class="modal-left">
+               <img src="assets/img/logo.png" alt="Logo" class="modal-logo" />
+               <h2>Aplikasi Dinas Penanaman Modal dan Pelayanan Terpadu</h2>
+            </div>
+
+            <div class="modal-right">
+               <span class="close-btn">&times;</span>
+               <h3>Selamat Datang Kembali!</h3>
+               <p>Silahkan masukkan username dan password Anda</p>
+
+               <form id="loginForm">
+                  <div class="input-group">
+                     <label>Username</label>
+                     <input type="text" id="username" placeholder="Masukkan username" required />
+                  </div>
+                  <div class="input-group">
+                     <label>Password</label>
+                     <div class="password-wrapper">
+                        <input type="password" id="password" placeholder="Masukkan kata sandi" required />
+                        <i class="fa-solid fa-eye toggle-password"></i>
+                     </div>
+                  </div>
+                  <a href="#" class="forgot-link">Lupa Password</a>
+
+                  <button type="submit" class="btn-login">Login</button>
+               </form>
+
+               <p class="signup-text">Belum punya akun? <a href="#">Daftar sekarang</a></p>
+            </div>
+         </div>
+      </div>
+
+      <div id="registerModal" class="modal-overlay">
+         <div class="modal-content reg-content">
+            <span class="close-btn" id="closeReg">&times;</span>
+
+            <h3>Registrasi Akun</h3>
+            <p>Silahkan isi data diri anda untuk mendaftar</p>
+
+            <form id="registerForm" class="reg-form-grid">
+               <div class="input-group">
+                  <label>NIK/KITAS/KITAP Pemohon</label>
+                  <input type="text" placeholder="Masukkan NIK/KITAS/KITAP Pemohon" />
+               </div>
+               <div class="input-group">
+                  <label>Username</label>
+                  <input type="text" placeholder="Masukkan username" />
+               </div>
+               <div class="input-group">
+                  <label>Nama Lengkap</label>
+                  <input type="text" placeholder="Masukkan nama lengkap" />
+               </div>
+               <div class="input-group">
+                  <label>Kata Sandi</label>
+                  <input type="password" placeholder="Masukkan kata sandi" />
+               </div>
+               <div class="input-group">
+                  <label>Tempat Lahir</label>
+                  <input type="text" placeholder="Masukkan tempat lahir" required />
+               </div>
+               <div class="input-group">
+                  <label>Tanggal Lahir</label>
+                  <input type="date" required />
+               </div>
+               <div class="reg-buttons full-width">
+                  <button type="submit" class="btn-login">Simpan Registrasi</button>
+                  <button type="button" class="btn-cancel" id="btnBatalReg">Batalkan Registrasi</button>
+               </div>
+            </form>
+         </div>
+      </div>
+
+      <div id="verifyModal" class="modal-overlay">
+         <div class="modal-content">
+            <div class="modal-left">
+               <img src="assets/img/logo.png" alt="Logo" class="modal-logo" />
+               <h2>Aplikasi Dinas Penanaman Modal dan Pelayanan Terpadu</h2>
+            </div>
+
+            <div class="modal-right">
+               <span class="close-btn" id="closeVerify">&times;</span>
+               <h3>Masukkan Kode Verifikasi</h3>
+               <p>Kami telah mengirimkan kode verifikasi ke email n***********97@gmail.com</p>
+
+               <div class="otp-container">
+                  <input type="text" maxlength="1" class="otp-input" />
+                  <input type="text" maxlength="1" class="otp-input" />
+                  <input type="text" maxlength="1" class="otp-input" />
+                  <input type="text" maxlength="1" class="otp-input" />
+               </div>
+
+               <button class="btn-login" style="margin-top: 20px">Verifikasi Sekarang</button>
+               <p class="signup-text">
+                  Belum menerima kode verifikasi?
+                  <a href="#">Kirim ulang</a> dalam 50 detik
+               </p>
+            </div>
+         </div>
+      </div>
+
+      <div id="resetModal" class="modal-overlay">
+         <div class="modal-content">
+            <div class="modal-left">
+               <img src="assets/img/logo.png" alt="Logo" class="modal-logo" />
+               <h2>Aplikasi Dinas Penanaman Modal dan Pelayanan Terpadu</h2>
+            </div>
+
+            <div class="modal-right">
+               <span class="close-btn" id="closeReset">&times;</span>
+               <h3>Reset Kata Sandi</h3>
+               <p>Silahkan masukkan username dan password Anda</p>
+
+               <form id="resetForm">
+                  <div class="input-group">
+                     <label>Kata Sandi</label>
+                     <input type="password" placeholder="Masukkan kata sandi baru" required />
+                  </div>
+                  <div class="input-group">
+                     <label>Konfirmasi Kata Sandi</label>
+                     <div class="password-wrapper">
+                        <input type="password" placeholder="Konfirmasi kata sandi baru" required />
+                        <span class="toggle-password"></span>
+                     </div>
+                  </div>
+
+                  <button type="submit" class="btn-login">Simpan</button>
+               </form>
+            </div>
+         </div>
+      </div>
+
+      <div id="successModal" class="modal-overlay">
+         <div class="modal-content">
+            <div class="modal-left">
+               <img src="assets/img/logo.png" alt="Logo" class="modal-logo" />
+               <h2>Aplikasi Dinas Penanaman Modal dan Pelayanan Terpadu</h2>
+            </div>
+
+            <div class="modal-right success-center">
+               <span class="close-btn" id="closeSuccess">&times;</span>
+
+               <div class="success-icon">
+                  <div class="badge-blue">
+                     <span>✓</span>
+                  </div>
+               </div>
+
+               <h3>Kata Sandi Berhasil Diubah</h3>
+               <p>Kata sandi berhasil diperbarui. Silahkan gunakan kata sandi baru untuk masuk akun</p>
+
+               <button class="btn-login" id="btnMulaiUlang">Mulai Ulang</button>
+            </div>
+         </div>
+      </div>
+
+      <script src="assets/js/script.js"></script>
+   </body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "pengajuan": [
+    {
+      "id": 1,
+      "tanggal": "2024-03-20",
+      "nik": "3509012345678901",
+      "nama": "Budi Santoso",
+      "instansi": "Dinas Kesehatan",
+      "layanan": "Izin Apotek",
+      "tipe": "Izin Baru",
+      "status_step": 1,
+      "file_terima": "Tanda-Terima-8821.pdf"
+    },
+    {
+      "id": 2,
+      "tanggal": "2024-03-21",
+      "nik": "3509019876543210",
+      "nama": "Siti Aminah",
+      "instansi": "Dinas Pendidikan",
+      "layanan": "Izin Pendirian SMP Swasta",
+      "tipe": "Perpanjangan",
+      "status_step": 2,
+      "file_terima": "Tanda-Terima-4322.pdf"
+    }
+  ]
+}

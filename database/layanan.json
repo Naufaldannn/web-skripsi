@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "nama": "Izin Apotek",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 2,
+        "nama": "Izin Praktik Psikolog Klinis",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 3,
+        "nama": "Izin Pendirian SMP Swasta",
+        "instansi": "Dinas Pendidikan"
+    },
+    {
+        "id": 4,
+        "nama": "Izin Trayek Angkatan Umum",
+        "instansi": "Dinas Perhubungan"
+    },
+    {
+        "id": 5,
+        "nama": "Izin Usaha Perikanan",
+        "instansi": "Dinas Perikanan"
+    }
+]

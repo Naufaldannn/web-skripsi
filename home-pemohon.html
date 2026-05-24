@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="id">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
+      <title>DPMPTSP - Dashboard Pemohon</title>
+      <link rel="stylesheet" href="assets/css/style.css" />
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+   </head>
+   <body>
+      <header class="navbar">
+         <div class="container">
+            <div class="logo">
+               <img src="assets/img/logo.png" alt="Logo DPMPTSP" style="height: 40px" />
+            </div>
+            <div class="user-profile-nav">
+               <div class="notification-wrapper" style="position: relative; display: flex; align-items: center">
+                  <i id="notifTrigger" class="fa-regular fa-bell" style="font-size: 1.6rem; cursor: pointer; color: white; margin-top: 4px;"></i>
+                  <span id="unreadBadge" class="unread-badge"></span>
+
+                  <div class="notification-dropdown" id="notifDropdown">
+                     <div class="dropdown-body">
+                        <a href="#" class="notif-item unread">
+                           <div class="notif-content">
+                              <strong>Verifikator</strong>
+                              <p>Permohonan izin Anda telah diterima dan sedang diproses.</p>
+                              <span class="notif-time">2 jam yang lalu</span>
+                           </div>
+                           <span class="dot-indicator"></span>
+                        </a>
+
+                        <a href="#" class="notif-item">
+                           <div class="notif-content">
+                              <strong>Dinas Kesehatan</strong>
+                              <p>Mohon lengkapi dokumen persyaratan Izin Apotek.</p>
+                              <span class="notif-time">5 jam yang lalu</span>
+                           </div>
+                        </a>
+                     </div>
+                     <div class="dropdown-footer">
+                        <a href="#">Lihat Semua Pesan</a>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="profile-meta" id="profileDropdownTrigger" style="cursor: pointer; position: relative">
+                  <i class="fa-solid fa-circle-user" style="font-size: 1.8rem; color: white"></i>
+                  <span id="userProfileText"><br /><strong></strong></span>
+
+                  <div class="dropdown-menu" id="profileDropdown">
+                     <a href="profile.html" class="dropdown-item">
+                        <span>Edit Profil</span>
+                        <i class="fa-regular fa-pen-to-square"></i>
+                     </a>
+                     <button id="btnLogout" class="dropdown-item btn-logout">
+                        <span>Logout</span>
+                        <i class="fa-regular fa-circle-xmark"></i>
+                     </button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </header>
+
+      <main class="container">
+         <section class="dashboard-hero">
+            <div class="instruction-card">
+               <p>Tombol <strong>Tambah Surat</strong> untuk menambahkan data surat, Tombol <strong>Refresh</strong> untuk merefresh data layanan</p>
+               <ul class="guide-list">
+                  <li><i class="fa-regular fa-file-lines"></i> (Ikon Lampiran Surat) untuk melihat lampiran persyaratan</li>
+                  <li><i class="fa-regular fa-comment"></i> (Ikon Pesan) untuk mengirim pesan ke verifikator</li>
+                  <li><i class="fa-regular fa-bell"></i> (Ikon Notifikasi) untuk melihat pemberitahuan</li>
+               </ul>
+            </div>
+            <div class="hero-image-frame">
+               <img src="assets/img/pengajuan.png" alt="Foto Pelayanan" />
+            </div>
+         </section>
+
+         <section class="layanan-section">
+            <div class="layanan-header">
+               <h2>Layanan Surat</h2>
+               <div class="action-buttons">
+                  <button class="btn-primary" id="openModal">Ajukan Perizinan</button>
+                  <button class="btn-cancel" style="width: auto" onclick="location.reload()">Refresh</button>
+               </div>
+            </div>
+
+            <div class="table-card">
+               <table id="tabelPengajuan">
+                  <thead>
+                     <tr>
+                        <th>No</th>
+                        <th>Tanggal Permohonan</th>
+                        <th>Pemohon</th>
+                        <th>Layanan Surat</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                     </tr>
+                  </thead>
+                  <tbody id="tableBody">
+                     <tr id="emptyRow">
+                        <td colspan="6" class="empty-state">
+                           <img src="https://cdn-icons-png.flaticon.com/512/7486/7486744.png" alt="Empty" />
+                           <p>Tidak Ada Riwayat Permohonan</p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </section>
+      </main>
+
+      <div class="modal-overlay" id="modalOverlay">
+         <div class="modal-content" style="width: 850px; padding: 0; flex-direction: column; border-radius: 10px">
+            <div class="modal-header-blue">
+               <div>
+                  <h3>Data Layanan Surat</h3>
+                  <span>Silahkan memilih layanan surat untuk permohonan perizinan</span>
+               </div>
+               <span class="x-close-btn" id="closeModal">&times;</span>
+            </div>
+            <div class="instruction-info">
+               Silahkan memilih layanan surat di bawah ini <br />
+               untuk menambahkan surat klik <strong>Tombol +</strong> untuk input data layanan surat
+            </div>
+            <div style="padding: 0 20px 20px 20px; max-height: 400px; overflow-y: auto">
+               <table class="modal-table">
+                  <thead>
+                     <tr>
+                        <th style="width: 50px">No</th>
+                        <th>Nama Layanan</th>
+                        <th>Instansi</th>
+                        <th style="width: 50px"></th>
+                     </tr>
+                  </thead>
+                  <tbody id="modalServiceList"></tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+
+      <div class="modal-overlay" id="modalFormDetail">
+         <div class="modal-content" style="width: 850px; padding: 0; flex-direction: column; border-radius: 10px">
+            <div class="modal-header-blue">
+               <div class="header-text">
+                  <h3>Input Data Layanan Surat</h3>
+                  <p id="labelLayananTerpilih">Nama Izin Terpilih</p>
+               </div>
+               <span class="x-close-btn" id="closeFormDetail">&times;</span>
+            </div>
+
+            <form id="formFinalPengajuan" style="padding: 20px; background: #fff">
+               <input type="hidden" id="selectedService" />
+               <input type="hidden" id="selectedInstansi" />
+
+               <div class="instruction-info" style="margin: 0 0 20px 0">
+                  Tentukan
+                  <strong>Permohonan Rekomendasi</strong> terlebih dahulu
+                  <br />
+                  1. Permohonan izin baru <br />
+                  2. Perpanjangan Perizinan
+               </div>
+
+               <div class="slider-container">
+                  <label class="switch">
+                     <input type="checkbox" id="isPerpanjangan" />
+                     <span class="slider round"></span>
+                  </label>
+                  <span class="label-text">Perpanjangan</span>
+               </div>
+
+               <div class="form-vertical">
+                  <div class="input-group">
+                     <input type="date" id="formDate" placeholder="Tanggal Permohonan" required />
+                  </div>
+                  <div class="input-group">
+                     <input type="text" id="formNIK" placeholder="NIK Pemohon" required />
+                  </div>
+                  <div class="input-group">
+                     <input type="text" id="formNama" placeholder="Nama Pemohon" required />
+                  </div>
+                  <div class="input-group">
+                     <select id="formProvinsi">
+                        <option value="">Provinsi</option>
+                     </select>
+                  </div>
+                  <div class="input-group">
+                     <select id="formKabupaten">
+                        <option value="">Kabupaten</option>
+                     </select>
+                  </div>
+                  <div class="input-group">
+                     <select id="formKecamatan">
+                        <option value="">Kecamatan</option>
+                     </select>
+                  </div>
+               </div>
+
+               <div class="modal-footer-btns">
+                  <button type="button" class="btn-cancel" id="btnBatalForm">Batal</button>
+                  <button type="submit" class="btn-submit">Simpan</button>
+               </div>
+            </form>
+         </div>
+      </div>
+
+      <div id="successModal" class="modal-overlay">
+         <div class="modal-content">
+            <div class="modal-left">
+               <img src="assets/img/logo.png" alt="Logo" class="modal-logo" />
+               <h2>Aplikasi Dinas Penanaman Modal dan Pelayanan Terpadu</h2>
+            </div>
+
+            <div class="modal-right success-center">
+               <span class="x-close-btn" id="closeSuccess">&times;</span>
+
+               <div class="success-icon">
+                  <div class="badge-blue">
+                     <span>✓</span>
+                  </div>
+               </div>
+
+               <h3>Permohonan Berhasil Dibuat</h3>
+               <p>Permohonan berhasil dibuat. Mohon lengkapi dokumen persyaratan yang dibutuhkan.</p>
+
+               <button class="btn-login" id="btnMulaiUlang">Kembali</button>
+            </div>
+         </div>
+      </div>
+
+      <div id="logoutConfirmModal" class="modal-overlay">
+         <div class="modal-content" style="max-width: 450px; padding: 30px; text-align: center; flex-direction: column">
+            <h3>Keluar Akun</h3>
+            <p style="margin-bottom: 20px; margin-top: 12px; color: #666; font-size: 0.9rem">Apakah Anda yakin ingin keluar dari aplikasi?</p>
+
+            <div style="display: flex; gap: 15px; justify-content: center; width: 100%">
+               <button type="button" class="btn-cancel" id="btnBatalLogout" style="width: 100%; margin: 0">Batal</button>
+               <button type="button" class="btn-submit" id="btnYaLogout" style="width: 100%; background-color: #1a4fa0; border-color: #1a4fa0; margin: 0">Ya, Keluar</button>
+            </div>
+         </div>
+      </div>
+
+      <div class="modal-overlay" id="commentModal">
+         <div class="modal-content" style="width: 850px; padding: 0; flex-direction: column; border-radius: 10px">
+            <div class="modal-header-blue">
+               <div>
+                  <h3>Layanan Surat</h3>
+               </div>
+               <span class="x-close-btn" id="closeCommentModal">&times;</span>
+            </div>
+            <div class="instruction-info">Tulis <strong>Komentar</strong> di kolom komentar sebagai bentuk revisi kepada pihak pemohon.</div>
+
+            <form id="commentForm" style="padding: 5px 20px 20px 20px; background: #fff">
+               <div class="input-group" style="margin-bottom: 15px">
+                  <label for="commentText" style="font-size: 1rem; font-weight: 600; margin-bottom: 5px">Komentar</label>
+                  <textarea id="commentText" rows="5" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; font-family: inherit" placeholder="Ketik komentar disini..." required></textarea>
+               </div>
+
+               <div style="display: flex; justify-content: flex-end; gap: 10px">
+                  <button type="button" class="btn-cancel" id="btnBatalComment">Batal</button>
+                  <button type="submit" class="btn-submit">Kirim Pesan</button>
+               </div>
+            </form>
+         </div>
+      </div>
+
+      <div id="commentSuccessModal" class="modal-overlay">
+         <div class="modal-content">
+            <div class="modal-left">
+               <img src="assets/img/logo.png" alt="Logo" class="modal-logo" />
+               <h2>Aplikasi Dinas Penanaman Modal dan Pelayanan Terpadu</h2>
+            </div>
+
+            <div class="modal-right success-center">
+               <span class="x-close-btn" id="closeSuccessComment">&times;</span>
+
+               <div class="success-icon">
+                  <div class="badge-blue">
+                     <span>✓</span>
+                  </div>
+               </div>
+
+               <h3>Pesan Berhasil Dikirim</h3>
+               <p>Pesan berhasil dikirim. Silahkan cek status secara berkala di menu dashboard.</p>
+
+               <button class="btn-login" id="btnSuccessClose">Kembali</button>
+            </div>
+         </div>
+      </div>
+
+      <div class="modal-overlay" id="uploadDocumentModal">
+         <div class="modal-content" style="width: 850px; padding: 0; flex-direction: column; border-radius: 10px">
+            <div class="modal-header-blue">
+               <div>
+                  <h3>Upload Dokumen Persyaratan</h3>
+                  <span id="docHeaderTitle"></span>
+               </div>
+               <span class="x-close-btn" id="closeUploadModal">&times;</span>
+            </div>
+
+            <div class="instruction-info" id="docHeaderInfo" style="margin: 20px">
+               <strong>Memuat...</strong>
+            </div>
+
+            <div style="padding: 0 20px 20px 20px; max-height: 400px; overflow-y: auto">
+               <table class="modal-table">
+                  <thead>
+                     <tr>
+                        <th style="width: 50px">No</th>
+                        <th>Dokumen Persyaratan</th>
+                        <th style="width: 120px; text-align: center">Status</th>
+                        <th style="width: 120px; text-align: center">Aksi</th>
+                     </tr>
+                  </thead>
+                  <tbody id="documentTableBody">
+                     <tr>
+                        <td>1</td>
+                        <td>Permohonan Ijin Praktek Kepada Kepala Dinas DMPTSP Kabupaten Jember</td>
+                        <td style="text-align: center">
+                           <span style="background: #fce8e6; color: #c5221f; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600">TIDAK ADA</span>
+                        </td>
+                        <td style="text-align: center">
+                           <i class="fa-solid fa-upload" style="cursor: pointer; margin-right: 12px; color: #1a4fa0"></i>
+                           <i class="fa-regular fa-file-pdf" style="cursor: pointer; margin-right: 12px; color: #1a4fa0"></i>
+                           <i class="fa-solid fa-trash" style="cursor: pointer; color: #e74c3c"></i>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>2</td>
+                        <td>Fotocopy Kartu Tanda Penduduk (KTP) Pemohon</td>
+                        <td style="text-align: center">
+                           <span style="background: #fce8e6; color: #c5221f; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600">TIDAK ADA</span>
+                        </td>
+                        <td style="text-align: center">
+                           <i class="fa-solid fa-upload" style="cursor: pointer; margin-right: 12px; color: #1a4fa0"></i>
+                           <i class="fa-regular fa-file-pdf" style="cursor: pointer; margin-right: 12px; color: #1a4fa0"></i>
+                           <i class="fa-solid fa-trash" style="cursor: pointer; color: #e74c3c"></i>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>3</td>
+                        <td>Surat Tanda Register (STR) asli</td>
+                        <td style="text-align: center">
+                           <span style="background: #fce8e6; color: #c5221f; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600">TIDAK ADA</span>
+                        </td>
+                        <td style="text-align: center">
+                           <i class="fa-solid fa-upload" style="cursor: pointer; margin-right: 12px; color: #1a4fa0"></i>
+                           <i class="fa-regular fa-file-pdf" style="cursor: pointer; margin-right: 12px; color: #1a4fa0"></i>
+                           <i class="fa-solid fa-trash" style="cursor: pointer; color: #e74c3c"></i>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>4</td>
+                        <td>Surat Pernyataan Keaslian Dokumen Bermaterai Rp. 10.000</td>
+                        <td style="text-align: center">
+                           <span style="background: #fce8e6; color: #c5221f; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600">TIDAK ADA</span>
+                        </td>
+                        <td style="text-align: center">
+                           <i class="fa-solid fa-upload" style="cursor: pointer; margin-right: 12px; color: #1a4fa0"></i>
+                           <i class="fa-regular fa-file-pdf" style="cursor: pointer; margin-right: 12px; color: #1a4fa0"></i>
+                           <i class="fa-solid fa-trash" style="cursor: pointer; color: #e74c3c"></i>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+
+      <div id="deleteDocConfirmModal" class="modal-overlay">
+         <div class="modal-content" style="max-width: 450px; padding: 30px; text-align: center; flex-direction: column">
+            <h3>Hapus Dokumen</h3>
+            <p style="margin-bottom: 20px; margin-top: 12px; color: #666; font-size: 0.9rem">Apakah Anda yakin ingin menghapus dokumen ini?</p>
+
+            <div style="display: flex; gap: 15px; justify-content: center; width: 100%">
+               <button type="button" class="btn-cancel" id="btnBatalHapusDoc" style="width: 100%; margin: 0">Tidak</button>
+               <button type="button" class="btn-submit" id="btnYaHapusDoc" style="width: 100%; background-color: #1a4fa0; border-color: #1a4fa0; margin: 0">Ya</button>
+            </div>
+         </div>
+      </div>
+
+      <div class="modal-overlay" id="timelineDocumentModal">
+         <div class="modal-content" style="width: 850px; padding: 0; flex-direction: column; border-radius: 15px; overflow: hidden">
+            <div class="modal-header-blue">
+               <div>
+                  <h3>Timeline Status Surat</h3>
+                  <span id="timelineHeaderTitle" style="font-size: 0.8rem">Timeline Status</span>
+               </div>
+               <span class="x-close-btn" id="closeTimelineModal">&times;</span>
+            </div>
+
+            <div class="instruction-info" id="timelineHeaderInfo" style="margin: 20px; line-height: 1.6; border-radius: 8px"></div>
+
+            <div style="padding: 0 30px 30px 30px; max-height: 400px; overflow-y: auto">
+               <div class="timeline-container" id="timelineItemsContainer"></div>
+            </div>
+         </div>
+      </div>
+
+      <script src="assets/js/script.js"></script>
+   </body>
+</html>
