@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
    const otpInputs = document.querySelectorAll(".otp-input");
 
    let pengajuanCounter = 0;
-   let mainCounter = 0;
+   let mainCounter = 2;
 
    // ==========================================
    // 2. MODAL CONTROLLER
@@ -794,30 +794,49 @@ document.addEventListener("DOMContentLoaded", () => {
             year: "numeric",
          });
 
+         const baseTime = new Date();
+         const formatMundur = (menitMundur) => {
+            const t = new Date(baseTime.getTime() - menitMundur * 60 * 1000);
+            return t.toLocaleDateString("id-ID", {
+               day: "numeric",
+               month: "long",
+               year: "numeric",
+            }) + `, ${t.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })} WIB`;
+         };
+
+         const waktuDinas4 = currentDinasLevel === 4 ? formatMundur(0) : formatMundur(15);
+         const waktuDinas3 = currentDinasLevel === 3 ? formatMundur(0) : formatMundur(45);
+         const waktuDinas2 = currentDinasLevel === 2 ? formatMundur(0) : formatMundur(120);
+         const waktuDinas1 = currentDinasLevel === 1 ? formatMundur(0) : formatMundur(240);
+
          const timelineTitle = document.getElementById("timelineHeaderTitle");
          if (timelineTitle) timelineTitle.innerText = `Tracking - ${service}`;
 
          const timelineInfo = document.getElementById("timelineHeaderInfo");
          if (timelineInfo) {
             timelineInfo.innerHTML = `
-            <strong>Diajukan oleh:</strong> ${formNama} (${formNIK})<br>
-            <strong>Instansi:</strong> ${instansi}<br>
-            <strong>File Tanda Terima:</strong> Tanda_Terima_${formNIK}.pdf<br>
-            <strong>Tanggal Permohonan:</strong> ${tanggalPengajuan}
-         `;
+               <strong>Diajukan oleh:</strong> ${formNama} (${formNIK})<br>
+               <strong>Instansi:</strong> ${instansi}<br>
+               <strong>File Tanda Terima:</strong> Tanda_Terima_${formNIK}.pdf<br>
+               <strong>Tanggal Permohonan:</strong> ${tanggalPengajuan}
+            `;
          }
 
          const getStatusStyle = (status) => {
             const isBlue = status === "DISETUJUI" || status === "TERKIRIM";
             const isGray = status === "DIBATALKAN";
-
             return `
-            display: inline-block; 
-            background-color: ${isBlue ? "#d8eafe" : isGray ? "#f3f4f6" : "#fce8e6"}; 
-            color: ${isBlue ? "#1a4fa0" : isGray ? "#6b7280" : "#c5221f"}; 
-            padding: 2px 8px; border-radius: 5px; font-size: 0.65rem; font-weight: 600; margin-top: 5px;
-         `;
+               display: inline-block; 
+               background-color: ${isBlue ? "#d8eafe" : isGray ? "#f3f4f6" : "#fce8e6"}; 
+               color: ${isBlue ? "#1a4fa0" : isGray ? "#6b7280" : "#c5221f"}; 
+               padding: 2px 8px; border-radius: 5px; font-size: 0.65rem; font-weight: 600; margin-top: 5px;
+            `;
          };
+
+         const globalFooter = document.getElementById("timelineGlobalFooter");
+         if (globalFooter) {
+            globalFooter.style.display = (statusDinas4 === "DISETUJUI") ? "flex" : "none";
+         }
 
          const timelineItemsContainer = document.getElementById("timelineItemsContainer");
          if (timelineItemsContainer) {
@@ -848,8 +867,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             <div class="timeline-item active">
                <div class="timeline-icon-box" style="${status1 === "DITOLAK" ? "background-color: #ef4444;" : ""}">
-                  <i class="fa-solid ${status1 === "DITOLAK" ? "fa-xmark" : "fa-user-tie"}" 
-                     style="${status1 === "DITOLAK" ? "color: #ffffff;" : ""}"></i>
+                  <i class="fa-solid ${status1 === "DITOLAK" ? "fa-xmark" : "fa-user-tie"}" style="${status1 === "DITOLAK" ? "color: #ffffff;" : ""}"></i>
                </div>
                <div class="timeline-content-box">
                   <div class="timeline-text-group">
@@ -857,13 +875,17 @@ document.addEventListener("DOMContentLoaded", () => {
                      <span style="${getStatusStyle(status1)}">${status1}</span>
                      ${status1 === "DITOLAK" ? `<p style="color: #b91c1c; font-size: 0.75rem; margin-top: 5px;">Alasan: ${rejectNote}</p>` : ""}
                   </div>
+                  ${status1 === "DISETUJUI" || status1 === "DITOLAK" ? `
+                  <div class="timeline-date-group" style="margin-top: 8px;">
+                     <span style="color: #64748b; font-size: 0.7rem;">Waktu Proses:</span><br>
+                     <span style="color: #1a4fa0; font-weight: 600; font-size: 0.75rem;">${waktuDinas1}</span>
+                  </div>` : ""}
                </div>
             </div>
 
             <div class="timeline-item ${statusDinas2 !== "MENUNGGU" ? "active" : ""}">
                <div class="timeline-icon-box" style="${statusDinas2 === "DITOLAK" ? "background-color: #ef4444;" : ""}">
-                  <i class="fa-solid ${statusDinas2 === "DITOLAK" ? "fa-xmark" : "fa-user-tie"}" 
-                     style="${statusDinas2 === "DITOLAK" ? "color: #ffffff;" : ""}"></i>
+                  <i class="fa-solid ${statusDinas2 === "DITOLAK" ? "fa-xmark" : "fa-user-tie"}" style="${statusDinas2 === "DITOLAK" ? "color: #ffffff;" : ""}"></i>
                </div>
                <div class="timeline-content-box">
                   <div class="timeline-text-group">
@@ -871,13 +893,17 @@ document.addEventListener("DOMContentLoaded", () => {
                      <span style="${getStatusStyle(statusDinas2)}">${statusDinas2}</span>
                      ${statusDinas2 === "DITOLAK" ? `<p style="color: #b91c1c; font-size: 0.75rem; margin-top: 5px;">Alasan: ${rejectNote}</p>` : ""}
                   </div>
+                  ${statusDinas2 === "DISETUJUI" || statusDinas2 === "DITOLAK" ? `
+                  <div class="timeline-date-group" style="margin-top: 8px;">
+                     <span style="color: #64748b; font-size: 0.7rem;">Waktu Proses:</span><br>
+                     <span style="color: #1a4fa0; font-weight: 600; font-size: 0.75rem;">${waktuDinas2}</span>
+                  </div>` : ""}
                </div>
             </div>
 
             <div class="timeline-item ${statusDinas3 !== "MENUNGGU" ? "active" : ""}">
-               <div class="timeline-icon-box" style="${statusDinas3}">
-                  <i class="fa-solid ${statusDinas3 === "DITOLAK" ? "fa-xmark" : "fa-user-tie"}" 
-                     style="${statusDinas3 === "DITOLAK" ? "color: #ffffff;" : ""}"></i>
+               <div class="timeline-icon-box" style="${statusDinas3 === "DITOLAK" ? "background-color: #ef4444;" : ""}">
+                  <i class="fa-solid ${statusDinas3 === "DITOLAK" ? "fa-xmark" : "fa-user-tie"}" style="${statusDinas3 === "DITOLAK" ? "color: #ffffff;" : ""}"></i>
                </div>
                <div class="timeline-content-box">
                   <div class="timeline-text-group">
@@ -885,13 +911,17 @@ document.addEventListener("DOMContentLoaded", () => {
                      <span style="${getStatusStyle(statusDinas3)}">${statusDinas3}</span>
                      ${statusDinas3 === "DITOLAK" ? `<p style="color: #b91c1c; font-size: 0.75rem; margin-top: 5px;">Alasan: ${rejectNote}</p>` : ""}
                   </div>
+                  ${statusDinas3 === "DISETUJUI" || statusDinas3 === "DITOLAK" ? `
+                  <div class="timeline-date-group" style="margin-top: 8px;">
+                     <span style="color: #64748b; font-size: 0.7rem;">Waktu Proses:</span><br>
+                     <span style="color: #1a4fa0; font-weight: 600; font-size: 0.75rem;">${waktuDinas3}</span>
+                  </div>` : ""}
                </div>
             </div>
 
             <div class="timeline-item ${statusDinas4 !== "MENUNGGU" ? "active" : ""}">
                <div class="timeline-icon-box" style="${statusDinas4 === "DITOLAK" ? "background-color: #ef4444;" : ""}">
-                  <i class="fa-solid ${statusDinas4 === "DITOLAK" ? "fa-xmark" : "fa-user-tie"}" 
-                     style="${statusDinas4 === "DITOLAK" ? "color: #ffffff;" : ""}"></i>
+                  <i class="fa-solid ${statusDinas4 === "DITOLAK" ? "fa-xmark" : "fa-check-double"}" style="${statusDinas4 === "DITOLAK" ? "color: #ffffff;" : ""}"></i>
                </div>
                <div class="timeline-content-box">
                   <div class="timeline-text-group">
@@ -899,6 +929,11 @@ document.addEventListener("DOMContentLoaded", () => {
                      <span style="${getStatusStyle(statusDinas4)}">${statusDinas4}</span>
                      ${statusDinas4 === "DITOLAK" ? `<p style="color: #b91c1c; font-size: 0.75rem; margin-top: 5px;">Alasan: ${rejectNote}</p>` : ""}
                   </div>
+                  ${statusDinas4 === "DISETUJUI" || statusDinas4 === "DITOLAK" ? `
+                  <div class="timeline-date-group" style="margin-top: 8px;">
+                     <span style="color: #64748b; font-size: 0.7rem;">Waktu Proses:</span><br>
+                     <span style="color: #1a4fa0; font-weight: 600; font-size: 0.75rem;">${waktuDinas4}</span>
+                  </div>` : ""}
                </div>
             </div>
          `;
@@ -1230,4 +1265,40 @@ document.addEventListener("DOMContentLoaded", () => {
          }
       }
    });
+
+   // ==========================================
+   // 21. HOME LINK CONTROLLER
+   // ==========================================
+   const initDynamicHomeLink = () => {
+      const homeLinkElement = document.getElementById("btnHomeLink");
+      if (!homeLinkElement) return;
+
+      const storedUser = localStorage.getItem("currentUser");
+      let savedRole = "user";
+
+      if (storedUser) {
+         const user = JSON.parse(storedUser);
+         savedRole = user.role || "user";
+      }
+
+      switch (savedRole) {
+         case "dinas1":
+            homeLinkElement.href = "home-dinas1.html";
+            break;
+         case "dinas2":
+            homeLinkElement.href = "home-dinas2.html";
+            break;
+         case "dinas3":
+            homeLinkElement.href = "home-dinas3.html";
+            break;
+         case "dinas4":
+            homeLinkElement.href = "home-dinas4.html";
+            break;
+         default:
+            homeLinkElement.href = "home-pemohon.html";
+            break;
+      }
+   };
+
+   initDynamicHomeLink();
 });

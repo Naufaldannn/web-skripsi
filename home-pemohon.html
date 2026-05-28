@@ -3,7 +3,7 @@
    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
+      <link rel="icon" type="image/x-icon" href="assets/img/logo.png" />
       <title>DPMPTSP - Dashboard Pemohon</title>
       <link rel="stylesheet" href="assets/css/style.css" />
       <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
@@ -17,7 +17,7 @@
             </div>
             <div class="user-profile-nav">
                <div class="notification-wrapper" style="position: relative; display: flex; align-items: center">
-                  <i id="notifTrigger" class="fa-regular fa-bell" style="font-size: 1.6rem; cursor: pointer; color: white; margin-top: 4px;"></i>
+                  <i id="notifTrigger" class="fa-regular fa-bell" style="font-size: 1.6rem; cursor: pointer; color: white; margin-top: 4px"></i>
                   <span id="unreadBadge" class="unread-badge"></span>
 
                   <div class="notification-dropdown" id="notifDropdown">
@@ -101,11 +101,86 @@
                      </tr>
                   </thead>
                   <tbody id="tableBody">
+                     <tr data-status-fo="DISETUJUI" data-status-dinas2="DISETUJUI" data-status-dinas3="DISETUJUI" data-status-dinas4="DISETUJUI">
+                        <td>1</td>
+                        <td>
+                           <div style="font-weight: 600">20 Mei 2026</div>
+                           <div style="display: inline-block; background-color: #d8eafe; color: #1a4fa0; padding: 4px 12px; border-radius: 5px; font-size: 0.6rem; font-weight: 400"><i class="fa-solid fa-file-pdf" style="margin-right: 4px"></i> Tanda-Terima-5541.pdf</div>
+                        </td>
+                        <td>
+                           <div style="font-size: 0.8rem; color: #777">3509123456780001</div>
+                           <div style="font-weight: 600">Naufal Danendra</div>
+                        </td>
+                        <td>
+                           <div style="font-weight: 600">Dinas Kesehatan</div>
+                           <div style="font-size: 0.8rem; color: #777">Izin Praktik Psikolog</div>
+                           <div style="display: inline-block; background-color: #e6f4ea; color: #137333; padding: 4px 12px; border-radius: 5px; font-size: 0.6rem; font-weight: 600; margin-top: 4px">Surat Terbit</div>
+                        </td>
+                        <td>
+                           <div class="status-progress-wrapper action-timeline-icon" style="cursor: pointer; display: flex; gap: 5px">
+                              <div class="status-step active">
+                                 <div style="background-color: #1a4fa0; width: 13px; height: 13px; border-radius: 3px; display: flex; align-items: center; justify-content: center"><i class="fa-solid fa-check" style="color: #ffffff; font-size: 9px"></i></div>
+                                 <span>1</span>
+                              </div>
+                              <div class="status-step active">
+                                 <div style="background-color: #1a4fa0; width: 13px; height: 13px; border-radius: 3px; display: flex; align-items: center; justify-content: center"><i class="fa-solid fa-check" style="color: #ffffff; font-size: 9px"></i></div>
+                                 <span>2</span>
+                              </div>
+                              <div class="status-step active">
+                                 <div style="background-color: #1a4fa0; width: 13px; height: 13px; border-radius: 3px; display: flex; align-items: center; justify-content: center"><i class="fa-solid fa-check" style="color: #ffffff; font-size: 9px"></i></div>
+                                 <span>3</span>
+                              </div>
+                              <div class="status-step active">
+                                 <div style="background-color: #1a4fa0; width: 13px; height: 13px; border-radius: 3px; display: flex; align-items: center; justify-content: center"><i class="fa-solid fa-check" style="color: #ffffff; font-size: 9px"></i></div>
+                                 <span>4</span>
+                              </div>
+                           </div>
+                        </td>
+                        <td>
+                           <i class="fa-solid fa-file-lines action-upload-icon" style="cursor: pointer; color: #1a4fa0"></i>
+                           <i class="fa-regular fa-comment action-comment-icon" style="margin-left: 10px; cursor: pointer"></i>
+                        </td>
+                     </tr>
+
+                     <tr data-status-fo="DISETUJUI" data-status-dinas2="DITOLAK" data-status-dinas3="DIBATALKAN" data-status-dinas4="DIBATALKAN" data-reject-note="Dokumen SIP lama Anda tidak terbaca/buram. Mohon unggah kembali file dengan resolusi yang lebih baik.">
+                        <td>2</td>
+                        <td>
+                           <div style="font-weight: 600">22 Mei 2026</div>
+                           <div style="display: inline-block; background-color: #d8eafe; color: #1a4fa0; padding: 4px 12px; border-radius: 5px; font-size: 0.6rem; font-weight: 400"><i class="fa-solid fa-file-pdf" style="margin-right: 4px"></i> Tanda-Terima-9812.pdf</div>
+                        </td>
+                        <td>
+                           <div style="font-size: 0.8rem; color: #777">3509123456780001</div>
+                           <div style="font-weight: 600">Naufal Danendra</div>
+                        </td>
+                        <td>
+                           <div style="font-weight: 600">Dinas Kesehatan</div>
+                           <div style="font-size: 0.8rem; color: #777">Izin Usaha Apotek</div>
+                           <div style="display: inline-block; background-color: #fce8e6; color: #c5221f; padding: 4px 12px; border-radius: 5px; font-size: 0.6rem; font-weight: 600; margin-top: 4px">Ditolak</div>
+                        </td>
+                        <td>
+                           <div class="status-progress-wrapper action-timeline-icon" style="cursor: pointer; display: flex; gap: 5px">
+                              <div class="status-step active">
+                                 <div style="background-color: #1a4fa0; width: 13px; height: 13px; border-radius: 3px; display: flex; align-items: center; justify-content: center"><i class="fa-solid fa-check" style="color: #ffffff; font-size: 9px"></i></div>
+                                 <span>1</span>
+                              </div>
+                              <div class="status-step rejected">
+                                 <div style="background-color: #ef4444; width: 13px; height: 13px; border-radius: 3px; display: flex; align-items: center; justify-content: center"><i class="fa-solid fa-xmark" style="color: #ffffff; font-size: 9px"></i></div>
+                                 <span>2</span>
+                              </div>
+                              <div class="status-step"><input type="checkbox" disabled /><span>3</span></div>
+                              <div class="status-step"><input type="checkbox" disabled /><span>4</span></div>
+                           </div>
+                        </td>
+                        <td>
+                           <i class="fa-solid fa-file-lines action-upload-icon" style="cursor: pointer; color: #1a4fa0"></i>
+                           <i class="fa-regular fa-comment action-comment-icon" style="margin-left: 10px; cursor: pointer"></i>
+                        </td>
+                     </tr>
                      <tr id="emptyRow">
-                        <td colspan="6" class="empty-state">
+                        <!-- <td colspan="6" class="empty-state">
                            <img src="https://cdn-icons-png.flaticon.com/512/7486/7486744.png" alt="Empty" />
                            <p>Tidak Ada Riwayat Permohonan</p>
-                        </td>
+                        </td> -->
                      </tr>
                   </tbody>
                </table>
@@ -396,6 +471,17 @@
 
             <div style="padding: 0 30px 30px 30px; max-height: 400px; overflow-y: auto">
                <div class="timeline-container" id="timelineItemsContainer"></div>
+            </div>
+
+            <div id="timelineGlobalFooter" style="padding: 15px 30px; background: #f8fafc; border-top: 1px solid #e2e8f0; display: none; justify-content: flex-end">
+               <button
+                  type="button"
+                  class="btn-submit"
+                  onclick="alert('Mengunduh Surat Keterangan Terbit...')"
+                  style="background-color: #137333; border-color: #137333; padding: 10px 20px; font-size: 0.85rem; display: flex; align-items: center; gap: 8px; width: auto; margin: 0; color: #fff; border-radius: 6px; cursor: pointer; font-weight: 600"
+               >
+                  <i class="fa-solid fa-download"></i> Unduh Surat Keterangan Terbit
+               </button>
             </div>
          </div>
       </div>
