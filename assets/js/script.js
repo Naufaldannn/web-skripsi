@@ -155,13 +155,13 @@ document.addEventListener("DOMContentLoaded", () => {
          const user = JSON.parse(storedUser);
 
          const path = window.location.pathname;
-         if (path.includes("home-dinas1") && user.role !== "dinas1") {
+         if (path.includes("home-front-office") && user.role !== "front-office") {
             window.location.href = "home-pemohon.html";
-         } else if (path.includes("home-dinas2") && user.role !== "dinas2") {
+         } else if (path.includes("home-dinas-perizinan") && user.role !== "dinas-perizinan") {
             window.location.href = "home-pemohon.html";
-         } else if (path.includes("home-dinas3") && user.role !== "dinas3") {
+         } else if (path.includes("home-dinas-terkait") && user.role !== "dinas-terkait") {
             window.location.href = "home-pemohon.html";
-         } else if (path.includes("home-dinas4") && user.role !== "dinas4") {
+         } else if (path.includes("home-kepala-dinas") && user.role !== "kepala-dinas") {
             window.location.href = "home-pemohon.html";
          }
 
@@ -240,10 +240,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const progressUI = `
             <div class="status-progress-wrapper action-timeline-icon" style="cursor: pointer;">
-                <div class="status-step active"><input type="checkbox" checked disabled><span>1</span></div>
-                <div class="status-step"><input type="checkbox"><span>2</span></div>
-                <div class="status-step"><input type="checkbox"><span>3</span></div>
-                <div class="status-step"><input type="checkbox"><span>4</span></div>
+                <div class="status-step active"><input type="checkbox" checked disabled><span>FO</span></div>
+                <div class="status-step"><input type="checkbox"><span>DP</span></div>
+                <div class="status-step"><input type="checkbox"><span>DT</span></div>
+                <div class="status-step"><input type="checkbox"><span>KD</span></div>
             </div>
         `;
 
@@ -317,14 +317,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
          localStorage.setItem("currentUser", JSON.stringify(updatedUser));
          alert("Profil berhasil diperbarui!");
-         if (updatedUser.role === "dinas1") {
-            window.location.href = "home-dinas1.html";
-         } else if (updatedUser.role === "dinas2") {
-            window.location.href = "home-dinas2.html";
-         } else if (updatedUser.role === "dinas3") {
-            window.location.href = "home-dinas3.html";
-         } else if (updatedUser.role === "dinas4") {
-            window.location.href = "home-dinas4.html";
+         if (updatedUser.role === "front-office") {
+            window.location.href = "home-front-office.html";
+         } else if (updatedUser.role === "dinas-perizinan") {
+            window.location.href = "home-dinas-perizinan.html";
+         } else if (updatedUser.role === "dinas-terkait") {
+            window.location.href = "home-dinas-terkait.html";
+         } else if (updatedUser.role === "kepala-dinas") {
+            window.location.href = "home-kepala-dinas.html";
          } else {
             window.location.href = "home-pemohon.html";
          }
@@ -333,14 +333,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const btnBatal = forms.editProfil.querySelector(".btn-cancel") || forms.editProfil.querySelector(".btn-batal");
       btnBatal?.addEventListener("click", () => {
          const storedUser = JSON.parse(localStorage.getItem("currentUser") || "{}");
-         if (storedUser.role === "dinas1") {
-            window.location.href = "home-dinas1.html";
-         } else if (storedUser.role === "dinas2") {
-            window.location.href = "home-dinas2.html";
-         } else if (storedUser.role === "dinas3") {
-            window.location.href = "home-dinas3.html";
-         } else if (storedUser.role === "dinas4") {
-            window.location.href = "home-dinas4.html";
+         if (storedUser.role === "front-office") {
+            window.location.href = "home-front-office.html";
+         } else if (storedUser.role === "dinas-perizinan") {
+            window.location.href = "home-dinas-perizinan.html";
+         } else if (storedUser.role === "dinas-terkait") {
+            window.location.href = "home-dinas-terkait.html";
+         } else if (storedUser.role === "kepala-dinas") {
+            window.location.href = "home-kepala-dinas.html";
          } else {
             window.location.href = "home-pemohon.html";
          }
@@ -396,8 +396,6 @@ document.addEventListener("DOMContentLoaded", () => {
    // ==========================================
    // 10. AUTH SUBMISSIONS
    // ==========================================
-
-   // --- REGISTER SUBMISSIONS ---
    forms.register?.addEventListener("submit", async (e) => {
       e.preventDefault();
       const submitBtn = forms.register.querySelector("button[type='submit']");
@@ -452,7 +450,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
    });
 
-   // --- LOGIN SUBMISSIONS ---
    forms.login?.addEventListener("submit", async (e) => {
       e.preventDefault();
       const submitBtn = forms.login.querySelector("button");
@@ -476,10 +473,10 @@ document.addEventListener("DOMContentLoaded", () => {
          setTimeout(() => {
             if (matchedUser) {
                localStorage.setItem("currentUser", JSON.stringify(matchedUser));
-               if (matchedUser.role === "dinas1") window.location.href = "home-dinas1.html";
-               else if (matchedUser.role === "dinas2") window.location.href = "home-dinas2.html";
-               else if (matchedUser.role === "dinas3") window.location.href = "home-dinas3.html";
-               else if (matchedUser.role === "dinas4") window.location.href = "home-dinas4.html";
+               if (matchedUser.role === "front-office") window.location.href = "home-front-office.html";
+               else if (matchedUser.role === "dinas-perizinan") window.location.href = "home-dinas-perizinan.html";
+               else if (matchedUser.role === "dinas-terkait") window.location.href = "home-dinas-terkait.html";
+               else if (matchedUser.role === "kepala-dinas") window.location.href = "home-kepala-dinas.html";
                else window.location.href = "home-pemohon.html";
             } else {
                alert("Username atau kata sandi salah!");
@@ -759,9 +756,9 @@ document.addEventListener("DOMContentLoaded", () => {
    const currentPath = window.location.pathname;
    let currentDinasLevel = 1;
 
-   if (currentPath.includes("home-dinas2")) currentDinasLevel = 2;
-   else if (currentPath.includes("home-dinas3")) currentDinasLevel = 3;
-   else if (currentPath.includes("home-dinas4")) currentDinasLevel = 4;
+   if (currentPath.includes("home-dinas-perizinan")) currentDinasLevel = 2;
+   else if (currentPath.includes("home-dinas-terkait")) currentDinasLevel = 3;
+   else if (currentPath.includes("home-kepala-dinas")) currentDinasLevel = 4;
 
    // ==========================================
    // 15. TIMELINE MODAL CONTROLLER
@@ -775,9 +772,9 @@ document.addEventListener("DOMContentLoaded", () => {
          const row = e.target.closest("tr");
 
          const status1 = row.getAttribute("data-status-fo") || "TERKIRIM";
-         const statusDinas2 = row.getAttribute("data-status-dinas2") || "MENUNGGU";
-         const statusDinas3 = row.getAttribute("data-status-dinas3") || "MENUNGGU";
-         const statusDinas4 = row.getAttribute("data-status-dinas4") || "MENUNGGU";
+         const statusDinas2 = row.getAttribute("data-status-dinas-perizinan") || "MENUNGGU";
+         const statusDinas3 = row.getAttribute("data-status-dinas-terkait") || "MENUNGGU";
+         const statusDinas4 = row.getAttribute("data-status-kepala-dinas") || "MENUNGGU";
          const rejectNote = row.getAttribute("data-reject-note") || "";
 
          const pemohonData = row.children[2]?.innerText.split("\n") || [];
@@ -797,11 +794,13 @@ document.addEventListener("DOMContentLoaded", () => {
          const baseTime = new Date();
          const formatMundur = (menitMundur) => {
             const t = new Date(baseTime.getTime() - menitMundur * 60 * 1000);
-            return t.toLocaleDateString("id-ID", {
-               day: "numeric",
-               month: "long",
-               year: "numeric",
-            }) + `, ${t.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })} WIB`;
+            return (
+               t.toLocaleDateString("id-ID", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+               }) + `, ${t.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })} WIB`
+            );
          };
 
          const waktuDinas4 = currentDinasLevel === 4 ? formatMundur(0) : formatMundur(15);
@@ -835,7 +834,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
          const globalFooter = document.getElementById("timelineGlobalFooter");
          if (globalFooter) {
-            globalFooter.style.display = (statusDinas4 === "DISETUJUI") ? "flex" : "none";
+            globalFooter.style.display = statusDinas4 === "DISETUJUI" ? "flex" : "none";
          }
 
          const timelineItemsContainer = document.getElementById("timelineItemsContainer");
@@ -871,15 +870,19 @@ document.addEventListener("DOMContentLoaded", () => {
                </div>
                <div class="timeline-content-box">
                   <div class="timeline-text-group">
-                     <h4>Dinas 1</h4>
+                     <h4>Front Office</h4>
                      <span style="${getStatusStyle(status1)}">${status1}</span>
                      ${status1 === "DITOLAK" ? `<p style="color: #b91c1c; font-size: 0.75rem; margin-top: 5px;">Alasan: ${rejectNote}</p>` : ""}
                   </div>
-                  ${status1 === "DISETUJUI" || status1 === "DITOLAK" ? `
+                  ${
+                     status1 === "DISETUJUI" || status1 === "DITOLAK"
+                        ? `
                   <div class="timeline-date-group" style="margin-top: 8px;">
                      <span style="color: #64748b; font-size: 0.7rem;">Waktu Proses:</span><br>
                      <span style="color: #1a4fa0; font-weight: 600; font-size: 0.75rem;">${waktuDinas1}</span>
-                  </div>` : ""}
+                  </div>`
+                        : ""
+                  }
                </div>
             </div>
 
@@ -889,15 +892,19 @@ document.addEventListener("DOMContentLoaded", () => {
                </div>
                <div class="timeline-content-box">
                   <div class="timeline-text-group">
-                     <h4>Dinas 2</h4>
+                     <h4>Dinas Perizinan</h4>
                      <span style="${getStatusStyle(statusDinas2)}">${statusDinas2}</span>
                      ${statusDinas2 === "DITOLAK" ? `<p style="color: #b91c1c; font-size: 0.75rem; margin-top: 5px;">Alasan: ${rejectNote}</p>` : ""}
                   </div>
-                  ${statusDinas2 === "DISETUJUI" || statusDinas2 === "DITOLAK" ? `
+                  ${
+                     statusDinas2 === "DISETUJUI" || statusDinas2 === "DITOLAK"
+                        ? `
                   <div class="timeline-date-group" style="margin-top: 8px;">
                      <span style="color: #64748b; font-size: 0.7rem;">Waktu Proses:</span><br>
                      <span style="color: #1a4fa0; font-weight: 600; font-size: 0.75rem;">${waktuDinas2}</span>
-                  </div>` : ""}
+                  </div>`
+                        : ""
+                  }
                </div>
             </div>
 
@@ -907,33 +914,41 @@ document.addEventListener("DOMContentLoaded", () => {
                </div>
                <div class="timeline-content-box">
                   <div class="timeline-text-group">
-                     <h4>Dinas 3</h4>
+                     <h4>Dinas Terkait</h4>
                      <span style="${getStatusStyle(statusDinas3)}">${statusDinas3}</span>
                      ${statusDinas3 === "DITOLAK" ? `<p style="color: #b91c1c; font-size: 0.75rem; margin-top: 5px;">Alasan: ${rejectNote}</p>` : ""}
                   </div>
-                  ${statusDinas3 === "DISETUJUI" || statusDinas3 === "DITOLAK" ? `
+                  ${
+                     statusDinas3 === "DISETUJUI" || statusDinas3 === "DITOLAK"
+                        ? `
                   <div class="timeline-date-group" style="margin-top: 8px;">
                      <span style="color: #64748b; font-size: 0.7rem;">Waktu Proses:</span><br>
                      <span style="color: #1a4fa0; font-weight: 600; font-size: 0.75rem;">${waktuDinas3}</span>
-                  </div>` : ""}
+                  </div>`
+                        : ""
+                  }
                </div>
             </div>
 
             <div class="timeline-item ${statusDinas4 !== "MENUNGGU" ? "active" : ""}">
                <div class="timeline-icon-box" style="${statusDinas4 === "DITOLAK" ? "background-color: #ef4444;" : ""}">
-                  <i class="fa-solid ${statusDinas4 === "DITOLAK" ? "fa-xmark" : "fa-check-double"}" style="${statusDinas4 === "DITOLAK" ? "color: #ffffff;" : ""}"></i>
+                  <i class="fa-solid ${statusDinas4 === "DITOLAK" ? "fa-xmark" : "fa-user-tie"}" style="${statusDinas4 === "DITOLAK" ? "color: #ffffff;" : ""}"></i>
                </div>
                <div class="timeline-content-box">
                   <div class="timeline-text-group">
-                     <h4>Dinas 4</h4>
+                     <h4>Kepala Dinas</h4>
                      <span style="${getStatusStyle(statusDinas4)}">${statusDinas4}</span>
                      ${statusDinas4 === "DITOLAK" ? `<p style="color: #b91c1c; font-size: 0.75rem; margin-top: 5px;">Alasan: ${rejectNote}</p>` : ""}
                   </div>
-                  ${statusDinas4 === "DISETUJUI" || statusDinas4 === "DITOLAK" ? `
+                  ${
+                     statusDinas4 === "DISETUJUI" || statusDinas4 === "DITOLAK"
+                        ? `
                   <div class="timeline-date-group" style="margin-top: 8px;">
                      <span style="color: #64748b; font-size: 0.7rem;">Waktu Proses:</span><br>
                      <span style="color: #1a4fa0; font-weight: 600; font-size: 0.75rem;">${waktuDinas4}</span>
-                  </div>` : ""}
+                  </div>`
+                        : ""
+                  }
                </div>
             </div>
          `;
@@ -944,12 +959,15 @@ document.addEventListener("DOMContentLoaded", () => {
    });
 
    // ==========================================
-   // 16. LOAD DATA DINAS DARI JSON (Dinamis per Halaman)
+   // 16. LOAD DATA DINAS DARI JSON
    // ==========================================
    const loadDinasTable = async () => {
       const tableBody = document.getElementById("tableBodyDinas");
 
-      if (!window.location.pathname.includes("home-dinas") || !tableBody) return;
+      const path = window.location.pathname;
+      const isDinasPage = path.includes("home-front-office") || path.includes("home-dinas-perizinan") || path.includes("home-dinas-terkait") || path.includes("home-kepala-dinas");
+
+      if (!isDinasPage || !tableBody) return;
 
       try {
          const response = await fetch("../database/permohonan.json");
@@ -963,65 +981,75 @@ document.addEventListener("DOMContentLoaded", () => {
                const attrD3 = currentDinasLevel === 3 ? "TERKIRIM" : currentDinasLevel > 3 ? "DISETUJUI" : "MENUNGGU";
                const attrD4 = currentDinasLevel === 4 ? "TERKIRIM" : "MENUNGGU";
 
+               const getStepLabel = (step) => {
+                  const labels = {
+                     1: "FO",
+                     2: "DP",
+                     3: "DT",
+                     4: "KD",
+                  };
+                  return labels[step] || step;
+               };
+
                const renderStepBox = (stepNumber) => {
-               if (currentDinasLevel > stepNumber) {
-                  return `
+                  const labelText = getStepLabel(stepNumber);
+
+                  if (currentDinasLevel > stepNumber) {
+                     return `
                      <div class="status-step active">
                         <div class="custom-check-box" style="background-color: #1a4fa0; border: 1px solid #1a4fa0; width: 13px; height: 13px; border-radius: 3px; display: flex; align-items: center; justify-content: center;">
                            <i class="fa-solid fa-check" style="color: #ffffff; font-size: 9px;"></i>
                         </div>
-                        <span>${stepNumber}</span>
+                        <span>${labelText}</span>
                      </div>
                   `;
-               } 
-               else if (currentDinasLevel === stepNumber) {
-                  return `
+                  } else if (currentDinasLevel === stepNumber) {
+                     return `
                      <div class="status-step active current-stage">
                         <input type="checkbox" checked disabled style="accent-color: #94a3b8; filter: grayscale(1); opacity: 0.7;">
-                        <span>${stepNumber}</span>
+                        <span>${labelText}</span>
                      </div>
                   `;
-               } 
-               else {
-                  return `
+                  } else {
+                     return `
                      <div class="status-step">
                         <input type="checkbox" disabled>
-                        <span>${ stepNumber}</span>
+                        <span>${labelText}</span>
                      </div>
                   `;
-               }
-            };
+                  }
+               };
 
                const row = `
-                <tr data-status-fo="${attrD1}" 
-                    data-status-dinas2="${attrD2}" 
-                    data-status-dinas3="${attrD3}" 
-                    data-status-dinas4="${attrD4}">
-                    <td>${index + 1}</td>
-                    <td>
-                        <div style="font-weight: 600;">${item.tanggal}</div>
-                        <div style="display: inline-block; background-color: #d8eafe; color: #1a4fa0; padding: 4px 12px; border-radius: 5px; font-size: 0.6rem; font-weight: 400;">
-                            <i class="fa-solid fa-file-pdf"></i> ${item.file_terima}
-                        </div>
-                    </td>
-                    <td>
-                        <div style="font-size: 0.8rem; color: #777;">${item.nik}</div>
-                        <div style="font-weight: 600;">${item.nama}</div>
-                    </td>
-                    <td>
-                        <div style="font-weight: 600;">${item.instansi}</div>
-                        <div style="font-size: 0.8rem; color: #777;">${item.layanan}</div>
-                        <div style="display: inline-block; background-color: #d8eafe; color: #1a4fa0; padding: 4px 12px; border-radius: 5px; font-size: 0.6rem; font-weight: 400;">${item.tipe}</div>
-                    </td>
-                    <td>
-                        <div class="status-progress-wrapper action-timeline-icon" style="cursor: pointer;">
-                            ${renderStepBox(1)} ${renderStepBox(2)} ${renderStepBox(3)} ${renderStepBox(4)} </div>
-                    </td>
-                    <td>
-                        <i class="fa-solid fa-file-lines admin-view-doc" style="cursor: pointer; color: #1a4fa0;"></i>
-                        <i class="fa-regular fa-comment admin-action-comment" style="cursor:pointer; margin-left: 10px;"></i>
-                    </td>
-                </tr>`;
+             <tr data-status-fo="${attrD1}" 
+                 data-status-dinas-perizinan="${attrD2}" 
+                 data-status-dinas-terkait="${attrD3}" 
+                 data-status-kepala-dinas="${attrD4}">
+                 <td>${index + 1}</td>
+                 <td>
+                     <div style="font-weight: 600;">${item.tanggal}</div>
+                     <div style="display: inline-block; background-color: #d8eafe; color: #1a4fa0; padding: 4px 12px; border-radius: 5px; font-size: 0.6rem; font-weight: 400;">
+                         <i class="fa-solid fa-file-pdf"></i> ${item.file_terima}
+                     </div>
+                 </td>
+                 <td>
+                     <div style="font-size: 0.8rem; color: #777;">${item.nik}</div>
+                     <div style="font-weight: 600;">${item.nama}</div>
+                 </td>
+                 <td>
+                     <div style="font-weight: 600;">${item.instansi}</div>
+                     <div style="font-size: 0.8rem; color: #777;">${item.layanan}</div>
+                     <div style="display: inline-block; background-color: #d8eafe; color: #1a4fa0; padding: 4px 12px; border-radius: 5px; font-size: 0.6rem; font-weight: 400;">${item.tipe}</div>
+                 </td>
+                 <td>
+                     <div class="status-progress-wrapper action-timeline-icon" style="cursor: pointer;">
+                         ${renderStepBox(1)} ${renderStepBox(2)} ${renderStepBox(3)} ${renderStepBox(4)} </div>
+                 </td>
+                 <td>
+                     <i class="fa-solid fa-file-lines admin-view-doc" style="cursor: pointer; color: #1a4fa0;"></i>
+                     <i class="fa-regular fa-comment admin-action-comment" style="cursor:pointer; margin-left: 10px;"></i>
+                 </td>
+             </tr>`;
                tableBody.insertAdjacentHTML("beforeend", row);
             });
          }
@@ -1032,7 +1060,7 @@ document.addEventListener("DOMContentLoaded", () => {
    loadDinasTable();
 
    // ==========================================
-   // 17. UPDATE STATUS UI HELPER (Dinamis per Level)
+   // 17. UPDATE STATUS UI HELPER
    // ==========================================
    const updateRowStatusUI = (row, action) => {
       const steps = row.querySelectorAll(".status-step");
@@ -1041,13 +1069,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!currentStep) return;
 
-      const getStepLabel = (level) => (level === 1 ? "1" : level);
+      const getStepLabel = (level) => {
+         const labels = {
+            1: "FO",
+            2: "DP",
+            3: "DT",
+            4: "KD",
+         };
+         return labels[level] || level;
+      };
 
       if (action === "setuju") {
          currentStep.classList.remove("rejected");
          currentStep.classList.add("active");
          currentStep.innerHTML = `
-         <div class="custom-x-box" style="background-color: #1a4fa0; border: 1px solid #1a4fa0; width: 13px; height: 13px; border-radius: 3px; display: flex; align-items: center; justify-content: center;">
+         <div class="custom-check-box" style="background-color: #1a4fa0; border: 1px solid #1a4fa0; width: 13px; height: 13px; border-radius: 3px; display: flex; align-items: center; justify-content: center;">
             <i class="fa-solid fa-check" style="color: #ffffff; font-size: 9px;"></i>
          </div>
          <span>${getStepLabel(currentDinasLevel)}</span>
@@ -1084,7 +1120,7 @@ document.addEventListener("DOMContentLoaded", () => {
    };
 
    // ==========================================
-   // 18. MODAL DOKUMEN, TERUSKAN & KOMENTAR (ADMIN)
+   // 18. MODAL DOKUMEN, TERUSKAN & KOMENTAR
    // ==========================================
    const adminDocModal = document.getElementById("adminDocModal");
    const adminForwardModal = document.getElementById("forwardModal");
@@ -1102,8 +1138,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (row) currentRowTarget = row;
 
+      const path = window.location.pathname;
+      const isDinasPage = path.includes("home-front-office") || path.includes("home-dinas-perizinan") || path.includes("home-dinas-terkait") || path.includes("home-kepala-dinas");
+
       if (target.classList.contains("fa-file-pdf")) {
-         if (window.location.pathname.includes("home-dinas") && row) {
+         if (isDinasPage && row) {
             const statusSpan = row.querySelector("td span");
             const statusText = statusSpan ? statusSpan.innerText.trim() : "";
 
@@ -1116,7 +1155,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (target.classList.contains("admin-view-doc") || target.classList.contains("fa-file-lines")) {
-         if (window.location.pathname.includes("home-dinas") && row) {
+         if (isDinasPage && row) {
             const nikPemohon = row.children[2].querySelector("div:first-child").innerText;
             const namaPemohon = row.children[2].querySelector("div:last-child").innerText;
             const instansi = row.children[3].querySelector("div:first-child").innerText;
@@ -1175,8 +1214,26 @@ document.addEventListener("DOMContentLoaded", () => {
       }
    });
 
+   document.getElementById("adminCommentForm")?.addEventListener("submit", (e) => {
+      e.preventDefault(); 
+      e.stopPropagation();
+
+      if (adminCommentModal) {
+         adminCommentModal.style.display = "none";
+      }
+
+      if (adminCommentSuccess) {
+         adminCommentSuccess.style.display = "flex";
+      } else {
+         const backupModal = document.getElementById("commentSuccessModal");
+         if (backupModal) backupModal.style.display = "flex";
+      }
+
+      e.target.reset();
+   });
+
    // ==========================================
-   // 19. FORM SUBMIT HANDLERS (REVISI FINAL)
+   // 19. FORM SUBMIT HANDLERS
    // ==========================================
    document.getElementById("forwardForm")?.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -1184,25 +1241,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!currentRowTarget) return;
 
-      if (filterValue.startsWith("dinas")) {
+      if (filterValue.startsWith("dinas") || filterValue === "setuju") {
          updateRowStatusUI(currentRowTarget, "setuju");
 
-         currentRowTarget.setAttribute(`data-status-dinas${currentDinasLevel}`, "DISETUJUI");
          if (currentDinasLevel === 1) {
             currentRowTarget.setAttribute("data-status-fo", "DISETUJUI");
+            currentRowTarget.setAttribute("data-status-dinas-perizinan", "TERKIRIM");
+         } else if (currentDinasLevel === 2) {
+            currentRowTarget.setAttribute("data-status-dinas-perizinan", "DISETUJUI");
+            currentRowTarget.setAttribute("data-status-dinas-terkait", "TERKIRIM");
+         } else if (currentDinasLevel === 3) {
+            currentRowTarget.setAttribute("data-status-dinas-terkait", "DISETUJUI");
+            currentRowTarget.setAttribute("data-status-kepala-dinas", "TERKIRIM");
+         } else if (currentDinasLevel === 4) {
+            currentRowTarget.setAttribute("data-status-kepala-dinas", "DISETUJUI");
          }
 
          currentRowTarget.setAttribute("data-reject-note", "");
 
-         const nextLevel = currentDinasLevel + 1;
-         if (nextLevel <= 4) {
-            currentRowTarget.setAttribute(`data-status-dinas${nextLevel}`, "TERKIRIM");
-         }
-
          if (adminForwardModal) adminForwardModal.style.display = "none";
          if (adminForwardSuccess) adminForwardSuccess.style.display = "flex";
-      }
-      else if (filterValue === "tolak") {
+      } else if (filterValue === "tolak") {
          if (adminForwardModal) adminForwardModal.style.display = "none";
          if (rejectModal) rejectModal.style.display = "flex";
       }
@@ -1215,13 +1274,20 @@ document.addEventListener("DOMContentLoaded", () => {
       if (currentRowTarget) {
          updateRowStatusUI(currentRowTarget, "tolak");
 
-         currentRowTarget.setAttribute(`data-status-dinas${currentDinasLevel}`, "DITOLAK");
          if (currentDinasLevel === 1) {
             currentRowTarget.setAttribute("data-status-fo", "DITOLAK");
-         }
-
-         for (let i = currentDinasLevel + 1; i <= 4; i++) {
-            currentRowTarget.setAttribute(`data-status-dinas${i}`, "DIBATALKAN");
+            currentRowTarget.setAttribute("data-status-dinas-perizinan", "DIBATALKAN");
+            currentRowTarget.setAttribute("data-status-dinas-terkait", "DIBATALKAN");
+            currentRowTarget.setAttribute("data-status-kepala-dinas", "DIBATALKAN");
+         } else if (currentDinasLevel === 2) {
+            currentRowTarget.setAttribute("data-status-dinas-perizinan", "DITOLAK");
+            currentRowTarget.setAttribute("data-status-dinas-terkait", "DIBATALKAN");
+            currentRowTarget.setAttribute("data-status-kepala-dinas", "DIBATALKAN");
+         } else if (currentDinasLevel === 3) {
+            currentRowTarget.setAttribute("data-status-dinas-terkait", "DITOLAK");
+            currentRowTarget.setAttribute("data-status-kepala-dinas", "DIBATALKAN");
+         } else if (currentDinasLevel === 4) {
+            currentRowTarget.setAttribute("data-status-kepala-dinas", "DITOLAK");
          }
 
          currentRowTarget.setAttribute("data-reject-note", note);
@@ -1232,22 +1298,8 @@ document.addEventListener("DOMContentLoaded", () => {
       e.target.reset();
    });
 
-   document.getElementById("adminCommentForm")?.addEventListener("submit", (e) => {
-      e.preventDefault();
-      if (adminCommentModal) adminCommentModal.style.display = "none";
-
-      const commentSuccess = document.getElementById("commentSuccessModal");
-      if (commentSuccess) {
-         commentSuccess.style.display = "flex";
-      } else if (adminCommentSuccess) {
-         adminCommentSuccess.style.display = "flex";
-      }
-
-      e.target.reset();
-   });
-
    // ==========================================
-   // 20. TOGGLE SHOW/HIDE PASSWORD (ICON VERSION)
+   // 20. TOGGLE SHOW/HIDE PASSWORD
    // ==========================================
    document.addEventListener("click", (e) => {
       if (e.target.classList.contains("toggle-password")) {
@@ -1282,17 +1334,17 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       switch (savedRole) {
-         case "dinas1":
-            homeLinkElement.href = "home-dinas1.html";
+         case "front-office":
+            homeLinkElement.href = "home-front-office.html";
             break;
-         case "dinas2":
-            homeLinkElement.href = "home-dinas2.html";
+         case "dinas-perizinan":
+            homeLinkElement.href = "home-dinas-perizinan.html";
             break;
-         case "dinas3":
-            homeLinkElement.href = "home-dinas3.html";
+         case "dinas-terkait":
+            homeLinkElement.href = "home-dinas-terkait.html";
             break;
-         case "dinas4":
-            homeLinkElement.href = "home-dinas4.html";
+         case "kepala-dinas":
+            homeLinkElement.href = "home-kepala-dinas.html";
             break;
          default:
             homeLinkElement.href = "home-pemohon.html";
@@ -1301,4 +1353,41 @@ document.addEventListener("DOMContentLoaded", () => {
    };
 
    initDynamicHomeLink();
+
+   // ==========================================
+   // 22. JEMBER KECAMATAN DATA DUMMY CONTROLLER
+   // ==========================================
+   const initKecamatanJember = () => {
+      const selectKecamatan = document.getElementById("formKecamatan");
+      if (!selectKecamatan) return;
+
+      const kecamatanJember = [
+         "Kaliwates", 
+         "Sumbersari", 
+         "Patrang", 
+         "Ajung", 
+         "Ambulu", 
+         "Balung", 
+         "Bangsalsari", 
+         "Arjasa", 
+         "Jenggawah", 
+         "Mayang", 
+         "Panti", 
+         "Rambipuji", 
+         "Sukorambi", 
+         "Tanggul", 
+         "Wuluhan"
+      ];
+
+      selectKecamatan.innerHTML = '<option value="">Pilih Kecamatan</option>';
+
+      kecamatanJember.sort().forEach(kecamatan => {
+         const option = document.createElement("option");
+         option.value = kecamatan;
+         option.innerText = kecamatan;
+         selectKecamatan.appendChild(option);
+      });
+   };
+
+   initKecamatanJember();
 });

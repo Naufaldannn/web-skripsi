@@ -16,7 +16,7 @@
       "username": "@siti98",
       "password": "password123",
       "email": "siti@example.com",
-      "role": "dinas1"
+      "role": "front-office"
     },
     {
       "nik": "3509123456780003",
@@ -25,7 +25,7 @@
       "username": "@budi90",
       "password": "password123",
       "email": "budi@example.com",
-      "role": "dinas2"
+      "role": "dinas-perizinan"
     },
     {
       "nik": "3509123456780004",
@@ -34,7 +34,7 @@
       "username": "@riko93",
       "password": "password123",
       "email": "riko@example.com",
-      "role": "dinas3"
+      "role": "dinas-terkait"
     },
     {
       "nik": "3509123456780004",
@@ -43,7 +43,7 @@
       "username": "@eko95",
       "password": "password123",
       "email": "eko@example.com",
-      "role": "dinas4"
+      "role": "kepala-dinas"
     }
   ]
 }

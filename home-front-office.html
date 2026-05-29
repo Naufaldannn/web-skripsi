@@ -99,30 +99,6 @@
          </section>
       </main>
 
-      <div id="successModal" class="modal-overlay">
-         <div class="modal-content">
-            <div class="modal-left">
-               <img src="assets/img/logo.png" alt="Logo" class="modal-logo" />
-               <h2>Aplikasi Dinas Penanaman Modal dan Pelayanan Terpadu</h2>
-            </div>
-
-            <div class="modal-right success-center">
-               <span class="x-close-btn" id="closeSuccess">&times;</span>
-
-               <div class="success-icon">
-                  <div class="badge-blue">
-                     <span>✓</span>
-                  </div>
-               </div>
-
-               <h3>Permohonan Berhasil Dibuat</h3>
-               <p>Permohonan berhasil dibuat. Silahkan cek status secara berkala di menu dashboard.</p>
-
-               <button class="btn-login" id="btnMulaiUlang">Kembali</button>
-            </div>
-         </div>
-      </div>
-
       <div id="logoutConfirmModal" class="modal-overlay">
          <div class="modal-content" style="max-width: 450px; padding: 30px; text-align: center; flex-direction: column">
             <h3>Keluar Akun</h3>
@@ -176,7 +152,7 @@
                </div>
 
                <h3>Pesan Berhasil Dikirim</h3>
-               <p>Pesan berhasil dikirim. Silahkan cek status secara berkala di menu dashboard.</p>
+               <p>Pesan berhasil dikirim ke pemohon.</p>
 
                <button class="btn-login" id="btnSuccessClose">Kembali</button>
             </div>
@@ -286,18 +262,18 @@
             <div class="modal-header-blue">
                <div>
                   <h3>Layanan Surat</h3>
-                  <span>Silahkan pilih opsi terbitkan/tolak surat</span>
+                  <span>Silahkan pilih opsi teruskan/tolak surat</span>
                </div>
                <span class="x-close-btn" id="closeForwardModal" style="position: static; color: white">&times;</span>
             </div>
 
-            <div class="instruction-info" style="margin: 20px">Pilih opsi <strong>Terbitkan Surat</strong> untuk menerbitkan permohonan, pilih opsi <strong>Tolak Permohonan</strong> untuk menolak surat.</div>
+            <div class="instruction-info" style="margin: 20px">Pilih opsi <strong>Teruskan Surat</strong> untuk memproses permohonan, pilih opsi <strong>Tolak Permohonan</strong> untuk menolak surat.</div>
 
             <form id="forwardForm" style="padding: 0 20px 20px 20px; background: #fff">
                <div class="input-group" style="border: 1px solid #cbd5e1; padding: 10px 15px; border-radius: 8px">
                   <label style="color: #64748b; font-size: 0.8rem; margin-bottom: 5px">Opsi</label>
                   <select id="forwardFilter" style="border: none; padding: 0; font-size: 1rem; font-weight: 500; color: #334155; cursor: pointer">
-                     <option value="dinas4">Terbitkan Surat</option>
+                     <option value="dinas-perizinan">Teruskan ke Dinas Perizinan</option>
                      <option value="tolak">Tolak Permohonan</option>
                   </select>
                </div>
@@ -348,8 +324,8 @@
                      <span>✓</span>
                   </div>
                </div>
-               <h3>Permohonan Berhasil Diterbitkan</h3>
-               <p>Permohonan telah berhasil diterbitkan dan dikirimkan ke pihak pemohon.</p>
+               <h3>Surat Berhasil Teruskan</h3>
+               <p>Surat telah berhasil diteruskan ke pihak terkait untuk proses selanjutnya.</p>
                <button class="btn-login" id="btnForwardDone">Kembali</button>
             </div>
          </div>
