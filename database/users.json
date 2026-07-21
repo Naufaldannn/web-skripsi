@@ -1,49 +1,49 @@
 {
-  "users": [
-    {
-      "nik": "3509123456780001",
-      "nama": "Naufal Danendra",
-      "ttl": "Jember, 12 Agustus 1995",
-      "username": "@indra123",
-      "password": "password123",
-      "email": "naufal@example.com",
-      "role": "user"
-    },
-    {
-      "nik": "3509123456780002",
-      "nama": "Siti Aisyah",
-      "ttl": "Surabaya, 5 Maret 1998",
-      "username": "@siti98",
-      "password": "password123",
-      "email": "siti@example.com",
-      "role": "front-office"
-    },
-    {
-      "nik": "3509123456780003",
-      "nama": "Budi Santoso",
-      "ttl": "Banyuwangi, 22 Januari 1990",
-      "username": "@budi90",
-      "password": "password123",
-      "email": "budi@example.com",
-      "role": "dinas-perizinan"
-    },
-    {
-      "nik": "3509123456780004",
-      "nama": "Riko Supardi",
-      "ttl": "Jember, 22 Oktober 1993",
-      "username": "@riko93",
-      "password": "password123",
-      "email": "riko@example.com",
-      "role": "dinas-terkait"
-    },
-    {
-      "nik": "3509123456780004",
-      "nama": "Eko Suratman",
-      "ttl": "Jember, 18 Agustus 1995",
-      "username": "@eko95",
-      "password": "password123",
-      "email": "eko@example.com",
-      "role": "kepala-dinas"
-    }
-  ]
+   "users": [
+      {
+         "nik": "3509123456780001",
+         "nama": "Naufal Danendra",
+         "ttl": "Jember, 12 Agustus 1995",
+         "username": "@indra123",
+         "password": "password123",
+         "email": "naufal@example.com",
+         "role": "user"
+      },
+      {
+         "nik": "3509123456780002",
+         "nama": "Siti Aisyah",
+         "ttl": "Surabaya, 5 Maret 1998",
+         "username": "@siti98",
+         "password": "password123",
+         "email": "siti@example.com",
+         "role": "front-office"
+      },
+      {
+         "nik": "3509123456780003",
+         "nama": "Budi Santoso",
+         "ttl": "Banyuwangi, 22 Januari 1990",
+         "username": "@budi90",
+         "password": "password123",
+         "email": "budi@example.com",
+         "role": "dinas-perizinan"
+      },
+      {
+         "nik": "3509123456780004",
+         "nama": "Riko Supardi",
+         "ttl": "Jember, 22 Oktober 1993",
+         "username": "@riko93",
+         "password": "password123",
+         "email": "riko@example.com",
+         "role": "dinas-terkait"
+      },
+      {
+         "nik": "3509123456780004",
+         "nama": "Eko Suratman",
+         "ttl": "Jember, 18 Agustus 1995",
+         "username": "@eko95",
+         "password": "password123",
+         "email": "eko@example.com",
+         "role": "kepala-dinas"
+      }
+   ]
 }

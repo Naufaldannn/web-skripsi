@@ -3,7 +3,7 @@
    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
+      <link rel="icon" type="image/x-icon" href="assets/img/logo.png" />
       <title>DPMPTSP Jember - Onboarding</title>
       <link rel="stylesheet" href="assets/css/style.css" />
       <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -23,8 +23,8 @@
          <div class="container hero-wrapper">
             <div class="hero-text">
                <h1>
-                  Jember Layanan <br />
-                  <span>Perizinan Terpadu</span>
+                  Aplikasi Dinas Penanaman Modal <br />
+                  <span>dan Pelayanan Terpadu</span>
                </h1>
                <p>Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu (DPMPTSP) merupakan Organisasi Perangkat Daerah yang memegang peranan menyelenggarakan pelayanan perizinan terpadu pada Pemerintah Kabupaten Jember.</p>
                <button class="btn-primary" id="btn-masuk-utama">Masuk</button>
@@ -82,27 +82,27 @@
             <form id="registerForm" class="reg-form-grid">
                <div class="input-group">
                   <label>NIK/KITAS/KITAP Pemohon</label>
-                  <input type="text" placeholder="Masukkan NIK/KITAS/KITAP Pemohon" />
+                  <input type="text" id="regNIK" placeholder="Masukkan NIK/KITAS/KITAP Pemohon" maxlength="16" required />
                </div>
                <div class="input-group">
                   <label>Username</label>
-                  <input type="text" placeholder="Masukkan username" />
+                  <input type="text" id="regUsername" placeholder="Masukkan username" required />
                </div>
                <div class="input-group">
                   <label>Nama Lengkap</label>
-                  <input type="text" placeholder="Masukkan nama lengkap" />
+                  <input type="text" id="regNama" placeholder="Masukkan nama lengkap" required />
                </div>
                <div class="input-group">
                   <label>Kata Sandi</label>
-                  <input type="password" placeholder="Masukkan kata sandi" />
+                  <input type="password" id="regPassword" placeholder="Masukkan kata sandi" required />
                </div>
                <div class="input-group">
                   <label>Tempat Lahir</label>
-                  <input type="text" placeholder="Masukkan tempat lahir" required />
+                  <input type="text" id="regTempatLahir" placeholder="Masukkan tempat lahir" required />
                </div>
                <div class="input-group">
                   <label>Tanggal Lahir</label>
-                  <input type="date" required />
+                  <input type="date" id="regTanggalLahir" required />
                </div>
                <div class="reg-buttons full-width">
                   <button type="submit" class="btn-login">Simpan Registrasi</button>

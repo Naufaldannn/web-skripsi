@@ -2,26 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
    // ==========================================
    // 1. DATA & UI ELEMENTS
    // ==========================================
-   const layananData = [
-      { id: 1, nama: "Izin Apotek", instansi: "Dinas Kesehatan" },
-      {
-         id: 2,
-         nama: "Izin Praktik Psikolog Klinis",
-         instansi: "Dinas Kesehatan",
-      },
-      {
-         id: 3,
-         nama: "Izin Pendirian SMP Swasta",
-         instansi: "Dinas Pendidikan",
-      },
-      {
-         id: 4,
-         nama: "Izin Trayek Angkatan Umum",
-         instansi: "Dinas Perhubungan",
-      },
-      { id: 5, nama: "Izin Usaha Perikanan", instansi: "Dinas Perikanan" },
-   ];
-
    const modals = {
       login: document.getElementById("loginModal"),
       register: document.getElementById("registerModal"),
@@ -81,26 +61,33 @@ document.addEventListener("DOMContentLoaded", () => {
    // ==========================================
    // 3. RENDER & HELPER FUNCTIONS
    // ==========================================
-   const renderModalServices = () => {
+   const renderModalServices = async () => {
       const modalServiceList = document.getElementById("modalServiceList");
       if (!modalServiceList) return;
 
-      modalServiceList.innerHTML = layananData
-         .map(
-            (item, index) => `
-            <tr>
-                <td>${index + 1}</td>
-                <td>${item.nama}</td>
-                <td>${item.instansi}</td>
-                <td style="text-align: center;">
-                    <button class="btn-add-service" onclick="tahapDuaForm('${item.nama}', '${item.instansi}')">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
-                </td>
-            </tr>
-        `,
-         )
-         .join("");
+      try {
+         const response = await fetch("../database/layanan.json"); 
+         const dataLayanan = await response.json();
+
+         modalServiceList.innerHTML = dataLayanan
+            .map(
+               (item, index) => `
+               <tr>
+                   <td>${index + 1}</td>
+                   <td>${item.nama}</td>
+                   <td>${item.instansi}</td>
+                   <td style="text-align: center;">
+                       <button class="btn-add-service" onclick="tahapDuaForm('${item.nama}', '${item.instansi}')">
+                           <i class="fa-solid fa-plus"></i>
+                       </button>
+                   </td>
+               </tr>
+           `,
+            )
+            .join("");
+      } catch (err) {
+         console.error("Gagal memuat daftar layanan dari JSON:", err);
+      }
    };
 
    window.tahapDuaForm = (namaLayanan, instansi) => {
@@ -290,33 +277,48 @@ document.addEventListener("DOMContentLoaded", () => {
       const storedUser = localStorage.getItem("currentUser");
       if (storedUser) {
          const user = JSON.parse(storedUser);
-         const inputs = forms.editProfil.querySelectorAll("input");
-         if (inputs.length >= 5) {
-            inputs[0].value = user.nik || "";
-            inputs[1].value = user.nama || "";
-            inputs[2].value = user.ttl || "";
-            inputs[3].value = user.username || "";
-            inputs[4].value = user.password || "";
-         }
+         const inputNIK = document.getElementById("editNIK");
+         const inputNama = document.getElementById("editNama");
+         const inputTTL = document.getElementById("editTTL");
+         const inputUsername = document.getElementById("editUsername");
+         const inputPassword = document.getElementById("editPassword");
+
+         if (inputNIK) inputNIK.value = user.nik || "";
+         if (inputNama) inputNama.value = user.nama || "";
+         if (inputTTL) inputTTL.value = user.ttl || "";
+         if (inputUsername) inputUsername.value = user.username || "";
+         if (inputPassword) inputPassword.value = user.password || "";
       }
 
       forms.editProfil.addEventListener("submit", (e) => {
          e.preventDefault();
 
-         const inputs = forms.editProfil.querySelectorAll("input");
-         const storedUser = JSON.parse(localStorage.getItem("currentUser") || "{}");
+         const nikVal = document.getElementById("editNIK").value;
+         const namaVal = document.getElementById("editNama").value;
+         const ttlVal = document.getElementById("editTTL").value;
+         const usernameVal = document.getElementById("editUsername").value;
+         const passwordVal = document.getElementById("editPassword").value;
+
+         if (nikVal.length < 16) {
+            alert("Gagal: NIK harus tepat 16 digit!");
+            document.getElementById("editNIK").focus();
+            return;
+         }
+
+         const storedUserData = JSON.parse(localStorage.getItem("currentUser") || "{}");
 
          const updatedUser = {
-            ...storedUser,
-            nik: inputs[0].value,
-            nama: inputs[1].value,
-            ttl: inputs[2].value,
-            username: inputs[3].value,
-            password: inputs[4].value,
+            ...storedUserData,
+            nik: nikVal,
+            nama: namaVal,
+            ttl: ttlVal,
+            username: usernameVal,
+            password: passwordVal,
          };
 
          localStorage.setItem("currentUser", JSON.stringify(updatedUser));
          alert("Profil berhasil diperbarui!");
+
          if (updatedUser.role === "front-office") {
             window.location.href = "home-front-office.html";
          } else if (updatedUser.role === "dinas-perizinan") {
@@ -332,14 +334,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const btnBatal = forms.editProfil.querySelector(".btn-cancel") || forms.editProfil.querySelector(".btn-batal");
       btnBatal?.addEventListener("click", () => {
-         const storedUser = JSON.parse(localStorage.getItem("currentUser") || "{}");
-         if (storedUser.role === "front-office") {
+         const storedUserData = JSON.parse(localStorage.getItem("currentUser") || "{}");
+         if (storedUserData.role === "front-office") {
             window.location.href = "home-front-office.html";
-         } else if (storedUser.role === "dinas-perizinan") {
+         } else if (storedUserData.role === "dinas-perizinan") {
             window.location.href = "home-dinas-perizinan.html";
-         } else if (storedUser.role === "dinas-terkait") {
+         } else if (storedUserData.role === "dinas-terkait") {
             window.location.href = "home-dinas-terkait.html";
-         } else if (storedUser.role === "kepala-dinas") {
+         } else if (storedUserData.role === "kepala-dinas") {
             window.location.href = "home-kepala-dinas.html";
          } else {
             window.location.href = "home-pemohon.html";
@@ -400,14 +402,19 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       const submitBtn = forms.register.querySelector("button[type='submit']");
       const originalText = submitBtn.innerText;
-      const inputs = forms.register.querySelectorAll("input");
-      const nikInput = inputs[0].value;
-      const usernameInput = inputs[1].value;
-      const namaInput = inputs[2].value;
-      const passwordInput = inputs[3].value;
-      const tempatLahir = inputs[4].value;
-      const tanggalLahir = inputs[5].value;
+      const nikInput = document.getElementById("regNIK").value;
+      const usernameInput = document.getElementById("regUsername").value;
+      const namaInput = document.getElementById("regNama").value;
+      const passwordInput = document.getElementById("regPassword").value;
+      const tempatLahir = document.getElementById("regTempatLahir").value;
+      const tanggalLahir = document.getElementById("regTanggalLahir").value;
       const ttlLengkap = `${tempatLahir}, ${tanggalLahir}`;
+
+      if (nikInput.length < 16) {
+         alert("Gagal: NIK harus tepat 16 digit!");
+         document.getElementById("regNIK").focus();
+         return;
+      }
 
       submitBtn.innerText = "Mendaftarkan...";
       submitBtn.disabled = true;
@@ -959,102 +966,156 @@ document.addEventListener("DOMContentLoaded", () => {
    });
 
    // ==========================================
-   // 16. LOAD DATA DINAS DARI JSON
+   // 16. LOAD & FILTER DATA DINAS CONTROLLER
    // ==========================================
-   const loadDinasTable = async () => {
-      const tableBody = document.getElementById("tableBodyDinas");
+   let permohonanDataCache = [];
 
+   const renderDinasTableRows = (dataArray) => {
+      const tableBody = document.getElementById("tableBodyDinas");
+      if (!tableBody) return;
+
+      tableBody.innerHTML = "";
+
+      if (dataArray.length === 0) {
+         tableBody.innerHTML = `
+            <tr>
+               <td colspan="6" style="text-align: center; padding: 30px; color: #64748b;">
+                  <i class="fa-solid fa-magnifying-glass" style="font-size: 1.5rem; margin-bottom: 8px; display:block;"></i>
+                  Data tidak ditemukan berdasarkan filter saat ini.
+               </td>
+            </tr>`;
+         return;
+      }
+
+      dataArray.forEach((item, index) => {
+         let attrD1, attrD2, attrD3, attrD4;
+
+         if (item.kategori === "demo-sudah-diproses") {
+            if (currentDinasLevel === 1) {
+               attrD1 = "DISETUJUI";
+               attrD2 = "TERKIRIM";
+               attrD3 = "MENUNGGU";
+               attrD4 = "MENUNGGU";
+            } else if (currentDinasLevel === 2) {
+               attrD1 = "DISETUJUI";
+               attrD2 = "DISETUJUI";
+               attrD3 = "TERKIRIM";
+               attrD4 = "MENUNGGU";
+            } else if (currentDinasLevel === 3) {
+               attrD1 = "DISETUJUI";
+               attrD2 = "DISETUJUI";
+               attrD3 = "DISETUJUI";
+               attrD4 = "TERKIRIM";
+            } else if (currentDinasLevel === 4) {
+               attrD1 = "DISETUJUI";
+               attrD2 = "DISETUJUI";
+               attrD3 = "DISETUJUI";
+               attrD4 = "DISETUJUI";
+            }
+         } else {
+            attrD1 = item.status_fo || (currentDinasLevel > 1 ? "DISETUJUI" : "TERKIRIM");
+            attrD2 = item.status_dinas_perizinan || (currentDinasLevel === 2 ? "TERKIRIM" : currentDinasLevel > 2 ? "DISETUJUI" : "MENUNGGU");
+            attrD3 = item.status_dinas_terkait || (currentDinasLevel === 3 ? "TERKIRIM" : currentDinasLevel > 3 ? "DISETUJUI" : "MENUNGGU");
+            attrD4 = item.status_kepala_dinas || (currentDinasLevel === 4 ? "TERKIRIM" : "MENUNGGU");
+         }
+
+         const getStepLabel = (step) => {
+            const labels = { 1: "FO", 2: "DP", 3: "DT", 4: "KD" };
+            return labels[step] || step;
+         };
+
+         const renderStepBox = (stepNumber) => {
+            const labelText = getStepLabel(stepNumber);
+
+            let currentStatus = "MENUNGGU";
+            if (stepNumber === 1) currentStatus = attrD1;
+            else if (stepNumber === 2) currentStatus = attrD2;
+            else if (stepNumber === 3) currentStatus = attrD3;
+            else if (stepNumber === 4) currentStatus = attrD4;
+
+            if (currentStatus === "DISETUJUI") {
+               return `
+               <div class="status-step active">
+                  <div class="custom-check-box" style="background-color: #1a4fa0; border: 1px solid #1a4fa0; width: 13px; height: 13px; border-radius: 3px; display: flex; align-items: center; justify-content: center;">
+                     <i class="fa-solid fa-check" style="color: #ffffff; font-size: 9px;"></i>
+                  </div>
+                  <span>${labelText}</span>
+               </div>`;
+            } else if (currentStatus === "DITOLAK") {
+               return `
+               <div class="status-step rejected">
+                  <div class="custom-x-box" style="background-color: #ef4444; border: 1px solid #ef4444; width: 13px; height: 13px; border-radius: 3px; display: flex; align-items: center; justify-content: center;">
+                     <i class="fa-solid fa-xmark" style="color: #ffffff; font-size: 9px;"></i>
+                  </div>
+                  <span>${labelText}</span>
+               </div>`;
+            } else if (currentStatus === "TERKIRIM") {
+               return `
+               <div class="status-step active current-stage">
+                  <input type="checkbox" checked disabled style="accent-color: #94a3b8; filter: grayscale(1); opacity: 0.7;">
+                  <span>${labelText}</span>
+               </div>`;
+            } else {
+               return `
+               <div class="status-step">
+                  <input type="checkbox" disabled>
+                  <span>${labelText}</span>
+               </div>`;
+            }
+         };
+
+         const row = `
+            <tr data-status-fo="${attrD1}" 
+                data-status-dinas-perizinan="${attrD2}" 
+                data-status-dinas-terkait="${attrD3}" 
+                data-status-kepala-dinas="${attrD4}">
+                <td>${index + 1}</td>
+                <td>
+                    <div style="font-weight: 600;">${item.tanggal}</div>
+                    <div style="display: inline-block; background-color: #d8eafe; color: #1a4fa0; padding: 4px 12px; border-radius: 5px; font-size: 0.6rem; font-weight: 400;">
+                        <i class="fa-solid fa-file-pdf"></i> ${item.file_terima}
+                    </div>
+                </td>
+                <td>
+                    <div style="font-size: 0.8rem; color: #777;">${item.nik}</div>
+                    <div style="font-weight: 600;">${item.nama}</div>
+                </td>
+                <td>
+                    <div style="font-weight: 600; max-width: 200px; white-space: normal; word-break: break-word; line-height: 1.3;">
+                        ${item.instansi}
+                    </div>
+                    <div style="font-size: 0.8rem; color: #777;">${item.layanan}</div>
+                    <div style="display: inline-block; background-color: #d8eafe; color: #1a4fa0; padding: 4px 12px; border-radius: 5px; font-size: 0.6rem; font-weight: 400;">${item.tipe}</div>
+                </td>
+                <td>
+                    <div class="status-progress-wrapper action-timeline-icon" style="cursor: pointer;">
+                        ${renderStepBox(1)} ${renderStepBox(2)} ${renderStepBox(3)} ${renderStepBox(4)} </div>
+                </td>
+                <td>
+                    <i class="fa-solid fa-file-lines admin-view-doc" style="cursor: pointer; color: #1a4fa0;"></i>
+                    <i class="fa-regular fa-comment admin-action-comment" style="cursor:pointer; margin-left: 10px;"></i>
+                </td>
+            </tr>`;
+         tableBody.insertAdjacentHTML("beforeend", row);
+      });
+   };
+
+   const loadDinasTable = async () => {
       const path = window.location.pathname;
       const isDinasPage = path.includes("home-front-office") || path.includes("home-dinas-perizinan") || path.includes("home-dinas-terkait") || path.includes("home-kepala-dinas");
-
-      if (!isDinasPage || !tableBody) return;
+      if (!isDinasPage) return;
 
       try {
          const response = await fetch("../database/permohonan.json");
          const data = await response.json();
+         if (data.pengajuan) {
+            permohonanDataCache = data.pengajuan;
 
-         if (data.pengajuan && data.pengajuan.length > 0) {
-            tableBody.innerHTML = "";
-            data.pengajuan.forEach((item, index) => {
-               const attrD1 = currentDinasLevel > 1 ? "DISETUJUI" : "TERKIRIM";
-               const attrD2 = currentDinasLevel === 2 ? "TERKIRIM" : currentDinasLevel > 2 ? "DISETUJUI" : "MENUNGGU";
-               const attrD3 = currentDinasLevel === 3 ? "TERKIRIM" : currentDinasLevel > 3 ? "DISETUJUI" : "MENUNGGU";
-               const attrD4 = currentDinasLevel === 4 ? "TERKIRIM" : "MENUNGGU";
-
-               const getStepLabel = (step) => {
-                  const labels = {
-                     1: "FO",
-                     2: "DP",
-                     3: "DT",
-                     4: "KD",
-                  };
-                  return labels[step] || step;
-               };
-
-               const renderStepBox = (stepNumber) => {
-                  const labelText = getStepLabel(stepNumber);
-
-                  if (currentDinasLevel > stepNumber) {
-                     return `
-                     <div class="status-step active">
-                        <div class="custom-check-box" style="background-color: #1a4fa0; border: 1px solid #1a4fa0; width: 13px; height: 13px; border-radius: 3px; display: flex; align-items: center; justify-content: center;">
-                           <i class="fa-solid fa-check" style="color: #ffffff; font-size: 9px;"></i>
-                        </div>
-                        <span>${labelText}</span>
-                     </div>
-                  `;
-                  } else if (currentDinasLevel === stepNumber) {
-                     return `
-                     <div class="status-step active current-stage">
-                        <input type="checkbox" checked disabled style="accent-color: #94a3b8; filter: grayscale(1); opacity: 0.7;">
-                        <span>${labelText}</span>
-                     </div>
-                  `;
-                  } else {
-                     return `
-                     <div class="status-step">
-                        <input type="checkbox" disabled>
-                        <span>${labelText}</span>
-                     </div>
-                  `;
-                  }
-               };
-
-               const row = `
-             <tr data-status-fo="${attrD1}" 
-                 data-status-dinas-perizinan="${attrD2}" 
-                 data-status-dinas-terkait="${attrD3}" 
-                 data-status-kepala-dinas="${attrD4}">
-                 <td>${index + 1}</td>
-                 <td>
-                     <div style="font-weight: 600;">${item.tanggal}</div>
-                     <div style="display: inline-block; background-color: #d8eafe; color: #1a4fa0; padding: 4px 12px; border-radius: 5px; font-size: 0.6rem; font-weight: 400;">
-                         <i class="fa-solid fa-file-pdf"></i> ${item.file_terima}
-                     </div>
-                 </td>
-                 <td>
-                     <div style="font-size: 0.8rem; color: #777;">${item.nik}</div>
-                     <div style="font-weight: 600;">${item.nama}</div>
-                 </td>
-                 <td>
-                     <div style="font-weight: 600;">${item.instansi}</div>
-                     <div style="font-size: 0.8rem; color: #777;">${item.layanan}</div>
-                     <div style="display: inline-block; background-color: #d8eafe; color: #1a4fa0; padding: 4px 12px; border-radius: 5px; font-size: 0.6rem; font-weight: 400;">${item.tipe}</div>
-                 </td>
-                 <td>
-                     <div class="status-progress-wrapper action-timeline-icon" style="cursor: pointer;">
-                         ${renderStepBox(1)} ${renderStepBox(2)} ${renderStepBox(3)} ${renderStepBox(4)} </div>
-                 </td>
-                 <td>
-                     <i class="fa-solid fa-file-lines admin-view-doc" style="cursor: pointer; color: #1a4fa0;"></i>
-                     <i class="fa-regular fa-comment admin-action-comment" style="cursor:pointer; margin-left: 10px;"></i>
-                 </td>
-             </tr>`;
-               tableBody.insertAdjacentHTML("beforeend", row);
-            });
+            permohonanDataCache.sort((a, b) => new Date(b.tanggal) - new Date(a.tanggal));
+            renderDinasTableRows(permohonanDataCache);
          }
       } catch (err) {
-         console.error("Gagal memuat data:", err);
+         console.error("Gagal memuat data JSON:", err);
       }
    };
    loadDinasTable();
@@ -1215,7 +1276,7 @@ document.addEventListener("DOMContentLoaded", () => {
    });
 
    document.getElementById("adminCommentForm")?.addEventListener("submit", (e) => {
-      e.preventDefault(); 
+      e.preventDefault();
       e.stopPropagation();
 
       if (adminCommentModal) {
@@ -1361,27 +1422,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const selectKecamatan = document.getElementById("formKecamatan");
       if (!selectKecamatan) return;
 
-      const kecamatanJember = [
-         "Kaliwates", 
-         "Sumbersari", 
-         "Patrang", 
-         "Ajung", 
-         "Ambulu", 
-         "Balung", 
-         "Bangsalsari", 
-         "Arjasa", 
-         "Jenggawah", 
-         "Mayang", 
-         "Panti", 
-         "Rambipuji", 
-         "Sukorambi", 
-         "Tanggul", 
-         "Wuluhan"
-      ];
+      const kecamatanJember = ["Kaliwates", "Sumbersari", "Patrang", "Ajung", "Ambulu", "Balung", "Bangsalsari", "Arjasa", "Jenggawah", "Mayang", "Panti", "Rambipuji", "Sukorambi", "Tanggul", "Wuluhan"];
 
       selectKecamatan.innerHTML = '<option value="">Pilih Kecamatan</option>';
 
-      kecamatanJember.sort().forEach(kecamatan => {
+      kecamatanJember.sort().forEach((kecamatan) => {
          const option = document.createElement("option");
          option.value = kecamatan;
          option.innerText = kecamatan;
@@ -1390,4 +1435,148 @@ document.addEventListener("DOMContentLoaded", () => {
    };
 
    initKecamatanJember();
+
+   // ==========================================
+   // 23. INPUT REGISTRATION
+   // ==========================================
+   const initInputRestrictions = () => {
+      const regNIK = document.getElementById("regNIK");
+      const regNama = document.getElementById("regNama");
+      const regTempatLahir = document.getElementById("regTempatLahir");
+      const regUsername = document.getElementById("regUsername");
+
+      regNIK?.addEventListener("input", (e) => {
+         e.target.value = e.target.value.replace(/[^0-8]/g, "");
+      });
+
+      regNama?.addEventListener("input", (e) => {
+         e.target.value = e.target.value.replace(/[^a-zA-Z\s]/g, "");
+      });
+
+      regTempatLahir?.addEventListener("input", (e) => {
+         e.target.value = e.target.value.replace(/[^a-zA-Z\s]/g, "");
+      });
+
+      regUsername?.addEventListener("input", (e) => {
+         e.target.value = e.target.value.toLowerCase().replace(/[^a-z0-8]/g, "");
+      });
+   };
+
+   initInputRestrictions();
+
+   // ==========================================
+   // 24. INPUT EDIT PROFILE
+   // ==========================================
+   const initEditProfileRestrictions = () => {
+      const editNIK = document.getElementById("editNIK");
+      const editNama = document.getElementById("editNama");
+      const editUsername = document.getElementById("editUsername");
+
+      editNIK?.addEventListener("input", (e) => {
+         e.target.value = e.target.value.replace(/[^0-9]/g, "");
+      });
+
+      editNama?.addEventListener("input", (e) => {
+         e.target.value = e.target.value.replace(/[^a-zA-Z\s]/g, "");
+      });
+
+      editUsername?.addEventListener("input", (e) => {
+         e.target.value = e.target.value.toLowerCase().replace(/[^a-z0-9]/g, "");
+      });
+   };
+
+   initEditProfileRestrictions();
+
+   // ==========================================
+   // 25. MODAL FILTER LISTENERS CONTROLLER
+   // ==========================================
+   const filterOverlay = document.getElementById("modalFilterOverlay");
+   const btnBukaFilter = document.getElementById("filterModal");
+   const btnTutupFilter = document.getElementById("closeFilterModal");
+   const formFilter = document.getElementById("formFilterDinas");
+   const btnResetFilter = document.getElementById("btnResetFilter");
+
+   btnBukaFilter?.addEventListener("click", () => {
+      if (filterOverlay) filterOverlay.style.display = "flex";
+   });
+
+   btnTutupFilter?.addEventListener("click", () => {
+      if (filterOverlay) filterOverlay.style.display = "none";
+   });
+
+   formFilter?.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const tglValue = document.getElementById("filterTanggal").value;
+      const instansiValue = document.getElementById("filterInstansi").value;
+      const statusValue = document.getElementById("filterStatusProses").value;
+      const sortValue = document.getElementById("filterSortUrutan").value;
+
+      let hasilFilter = permohonanDataCache.filter((item) => {
+         if (tglValue && item.tanggal !== tglValue) return false;
+         if (instansiValue && item.instansi !== instansiValue) return false;
+
+         if (statusValue) {
+            let sudahDiproses = false;
+
+            if (item.kategori === "demo-sudah-diproses") {
+               sudahDiproses = true;
+            } else {
+               sudahDiproses = false;
+            }
+
+            if (statusValue === "BELUM" && sudahDiproses) return false;
+            if (statusValue === "SUDAH" && !sudahDiproses) return false;
+         }
+
+         return true;
+      });
+
+      if (sortValue === "terbaru") {
+         hasilFilter.sort((a, b) => new Date(b.tanggal) - new Date(a.tanggal));
+      } else if (sortValue === "terlama") {
+         hasilFilter.sort((a, b) => new Date(a.tanggal) - new Date(b.tanggal));
+      }
+
+      renderDinasTableRows(hasilFilter);
+      if (filterOverlay) filterOverlay.style.display = "none";
+   });
+
+   btnResetFilter?.addEventListener("click", () => {
+      formFilter.reset();
+      permohonanDataCache.sort((a, b) => new Date(b.tanggal) - new Date(a.tanggal));
+      renderDinasTableRows(permohonanDataCache);
+      if (filterOverlay) filterOverlay.style.display = "none";
+   });
+
+   // ==========================================
+   // 26. DYNAMIC FILTER INSTANSI FROM JSON
+   // ==========================================
+   const initFilterInstansiDropdown = async () => {
+      const selectInstansi = document.getElementById("filterInstansi");
+      if (!selectInstansi) return;
+
+      try {
+         const response = await fetch("../database/layanan.json");
+         const dataLayanan = await response.json();
+
+         if (!dataLayanan || dataLayanan.length === 0) return;
+
+         const daftarInstansi = [...new Set(dataLayanan.map(item => item.instansi))];
+         selectInstansi.innerHTML = '<option value="">Semua Instansi</option>';
+
+         daftarInstansi.sort().forEach(instansi => {
+            if (instansi) {
+               const option = document.createElement("option");
+               option.value = instansi;
+               option.innerText = instansi;
+               selectInstansi.appendChild(option);
+            }
+         });
+      } catch (err) {
+         console.error("Gagal memuat dropdown instansi:", err);
+      }
+   };
+
+   initFilterInstansiDropdown();
 });

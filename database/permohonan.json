@@ -1,26 +1,35 @@
 {
-  "pengajuan": [
-    {
-      "id": 1,
-      "tanggal": "2024-03-20",
-      "nik": "3509012345678901",
-      "nama": "Budi Santoso",
-      "instansi": "Dinas Kesehatan",
-      "layanan": "Izin Apotek",
-      "tipe": "Izin Baru",
-      "status_step": 1,
-      "file_terima": "Tanda-Terima-8821.pdf"
-    },
-    {
-      "id": 2,
-      "tanggal": "2024-03-21",
-      "nik": "3509019876543210",
-      "nama": "Siti Aminah",
-      "instansi": "Dinas Pendidikan",
-      "layanan": "Izin Pendirian SMP Swasta",
-      "tipe": "Perpanjangan",
-      "status_step": 2,
-      "file_terima": "Tanda-Terima-4322.pdf"
-    }
-  ]
+   "pengajuan": [
+      {
+         "id": 1,
+         "tanggal": "2024-03-20",
+         "nik": "3509012345678901",
+         "nama": "Budi Santoso",
+         "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana",
+         "layanan": "Izin Apotek",
+         "tipe": "Izin Baru",
+         "file_terima": "Tanda-Terima-8821.pdf"
+      },
+      {
+         "id": 2,
+         "tanggal": "2024-03-21",
+         "nik": "3509019876543210",
+         "nama": "Siti Aminah",
+         "instansi": "Dinas Pendidikan",
+         "layanan": "Izin Pendirian SMP Swasta",
+         "tipe": "Perpanjangan",
+         "file_terima": "Tanda-Terima-4322.pdf"
+      },
+      {
+         "id": 3,
+         "tanggal": "2024-03-22",
+         "nik": "3509015544332211",
+         "nama": "Dewi Lestari",
+         "instansi": "Dinas Perhubungan",
+         "layanan": "Izin Trayek Angkatan Umum",
+         "tipe": "Izin Baru",
+         "file_terima": "Tanda-Terima-7712.pdf",
+         "kategori": "demo-sudah-diproses"
+      }
+   ]
 }

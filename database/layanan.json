@@ -23,5 +23,360 @@
         "id": 5,
         "nama": "Izin Usaha Perikanan",
         "instansi": "Dinas Perikanan"
+    },
+    {
+        "id": 6,
+        "nama": "Izin Pembekalan Kesehatan Rumah Tangga",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 7,
+        "nama": "Izin mendirikan Rumah Sakit Kelas C dan D",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 8,
+        "nama": "Izin Praktik Elektromedis",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 9,
+        "nama": "Izin Praktik Dokter",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 10,
+        "nama": "Izin Optik",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 11,
+        "nama": "Izin Praktik Perekam Medis",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 12,
+        "nama": "Usaha Mikro Obat Tradisional",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 13,
+        "nama": "Izin Operasional Rumah Sakit Kelas C dan D",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 14,
+        "nama": "Izin Praktik Sanitarian",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 15,
+        "nama": "Izin Praktik Perawat (SIPP)",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 16,
+        "nama": "Izin Operasional Laboratorium Klinik",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 17,
+        "nama": "Izin Praktik Penata Anestesi",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 18,
+        "nama": "Izin Pedagang Pengecer Obat",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 19,
+        "nama": "Rekomendasi Izin Pendirian dan Operasional Rumah Sakit A dan B",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 20,
+        "nama": "Izin Praktik Terapis Wicara",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 21,
+        "nama": "Izin Praktik Bidan (SIPB)",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 22,
+        "nama": "Izin Operasional Klinik Kecantikan",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 23,
+        "nama": "Izin Praktik Tenaga Teknis Kefarmasian",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 24,
+        "nama": "Izin Toko Alat Kesehatan",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 25,
+        "nama": "Izin Praktik Tenaga Gizi",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 26,
+        "nama": "Izin Terapis Gigi dan Mulut",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 27,
+        "nama": "Izin Operasional Klinik Rawat Inap",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 28,
+        "nama": "Izin Praktik Akupuntur Terapis",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 29,
+        "nama": "Izin Praktik Fisioterapi",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 30,
+        "nama": "Izin Toko Obat",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 31,
+        "nama": "Izin Praktik Refraksionis",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 32,
+        "nama": "Izin Panti Sehat",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 33,
+        "nama": "Izin Operasional Klinik Rawat Jalan",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 34,
+        "nama": "Izin Praktik Penyehat Tradisional Empiris",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 35,
+        "nama": "Izin Praktik Ahli Teknologi Laboratorium Medik",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 36,
+        "nama": "Izin Hemodialisa",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 37,
+        "nama": "Izin Praktik Radiografer",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 38,
+        "nama": "Sertifikat Produksi Pangan Industri Rumah Tangga",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 39,
+        "nama": "Izin Operasional Puskesmas",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 40,
+        "nama": "Izin Praktik Orthotis Prosthetis",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 41,
+        "nama": "Izin Praktik Apoteker",
+        "instansi": "Dinas Kesehatan, Pengendalian Penduduk dan Keluarga Berencana"
+    },
+    {
+        "id": 42,
+        "nama": "Izin Sempadan Sungai",
+        "instansi": "Dinas Pekerjaan Umum Dan Penataan Ruang"
+    },
+    {
+        "id": 43,
+        "nama": "Izin Ruang Milik Jalan (Rumija) dan Pemakaian Kekayaan Daerah",
+        "instansi": "Dinas Pekerjaan Umum Dan Penataan Ruang"
+    },
+    {
+        "id": 44,
+        "nama": "Persetujuan Kegiatan Kesesuaian Pemanfaatan Ruang (Non Berusaha)",
+        "instansi": "Dinas Pekerjaan Umum Dan Penataan Ruang"
+    },
+    {
+        "id": 45,
+        "nama": "Pertelaan Rumah Susun",
+        "instansi": "Dinas Pekerjaan Umum Dan Penataan Ruang"
+    },
+    {
+        "id": 46,
+        "nama": "Izin Penyelenggaraan Reklame Tetap",
+        "instansi": "Dinas Penanaman Modal Dan Pelayanan Terpadu Satu Pintu"
+    },
+    {
+        "id": 47,
+        "nama": "Izin Penyelenggaraan Reklame Insidentil",
+        "instansi": "Dinas Penanaman Modal Dan Pelayanan Terpadu Satu Pintu"
+    },
+    {
+        "id": 48,
+        "nama": "Izin Pendirian Lembaga Satuan Pendidikan Non Formal",
+        "instansi": "Dinas Pendidikan"
+    },
+    {
+        "id": 49,
+        "nama": "Izin Operasional Lembaga Satuan Sekolah Dasar",
+        "instansi": "Dinas Pendidikan"
+    },
+    {
+        "id": 50,
+        "nama": "Izin Operasional Pusat Kegiatan Belajar Masyarakat (PKBM)",
+        "instansi": "Dinas Pendidikan"
+    },
+    {
+        "id": 51,
+        "nama": "Izin Pendirian PAUD / TK Swasta",
+        "instansi": "Dinas Pendidikan"
+    },
+    {
+        "id": 52,
+        "nama": "Izin Pendirian Pusat Kegiatan Belajar Masyarakat (PKBM)",
+        "instansi": "Dinas Pendidikan"
+    },
+    {
+        "id": 53,
+        "nama": "Izin Operasional Penyelenggaraan Pendidikan Keaksaraan (PKBM)",
+        "instansi": "Dinas Pendidikan"
+    },
+    {
+        "id": 54,
+        "nama": "Izin Pendirian Taman Kanak Kanak (TK)",
+        "instansi": "Dinas Pendidikan"
+    },
+    {
+        "id": 55,
+        "nama": "Izin Pendirian Lembaga Satuan Sekolah Dasar",
+        "instansi": "Dinas Pendidikan"
+    },
+    {
+        "id": 56,
+        "nama": "Izin Operasional Lembaga Kursus dan Pelatihan (LKP)",
+        "instansi": "Dinas Pendidikan"
+    },
+    {
+        "id": 57,
+        "nama": "Izin Operasional SMP Swasta",
+        "instansi": "Dinas Pendidikan"
+    },
+    {
+        "id": 58,
+        "nama": "Izin Pendirian Lembaga Kursus dan Pelatihan (LKP)",
+        "instansi": "Dinas Pendidikan"
+    },
+    {
+        "id": 59,
+        "nama": "Izin Operasional PAUD / TK Swasta",
+        "instansi": "Dinas Pendidikan"
+    },
+    {
+        "id": 60,
+        "nama": "Izin Trayek Angkutan Kota dan Angkutan Desa",
+        "instansi": "Dinas Perhubungan"
+    },
+    {
+        "id": 61,
+        "nama": "Perpanjangan Kartu Pengawasan Izin Trayek Angkutan Kota, Mobil Penumpang Umum Taxi dan Bus Perintis",
+        "instansi": "Dinas Perhubungan"
+    },
+    {
+        "id": 62,
+        "nama": "Izin Operasional Angkutan Taksi, dan Angkutan Antar Jemput Karyawan",
+        "instansi": "Dinas Perhubungan"
+    },
+    {
+        "id": 63,
+        "nama": "Izin Usaha Toko Swalayan (Lama)",
+        "instansi": "Dinas Perindustrian Dan Perdagangan"
+    },
+    {
+        "id": 64,
+        "nama": "Izin Usaha Pusat Perbelanjaan (Lama)",
+        "instansi": "Dinas Perindustrian Dan Perdagangan"
+    },
+    {
+        "id": 65,
+        "nama": "Izin Usaha Pasar Rakyat",
+        "instansi": "Dinas Perindustrian Dan Perdagangan"
+    },
+    {
+        "id": 66,
+        "nama": "Izin Usaha Toko Swalayan",
+        "instansi": "Dinas Perindustrian Dan Perdagangan"
+    },
+    {
+        "id": 67,
+        "nama": "Pengesahan Site Plan",
+        "instansi": "Dinas Perumahan Rakyat, Kawasan Permukiman Dan Lingkungan Hidup"
+    },
+    {
+        "id": 68,
+        "nama": "Persetujuan Lingkungan",
+        "instansi": "Dinas Perumahan Rakyat, Kawasan Permukiman Dan Lingkungan Hidup"
+    },
+    {
+        "id": 69,
+        "nama": "Izin Paramedik veteriner Pelayanan Kesehatan Hewan",
+        "instansi": "Dinas Peternakan"
+    },
+    {
+        "id": 70,
+        "nama": "Izin Paramedik veteriner Pelayanan Inseminator",
+        "instansi": "Dinas Peternakan"
+    },
+    {
+        "id": 71,
+        "nama": "Izin Paramedik veteriner Pelayanan Asisten Teknik Reproduksi",
+        "instansi": "Dinas Peternakan"
+    },
+    {
+        "id": 72,
+        "nama": "Izin Praktek Dokter Hewan",
+        "instansi": "Dinas Peternakan"
+    },
+    {
+        "id": 73,
+        "nama": "Izin Paramedik Veteriner Pelayanan Pemeriksa Kebuntingan",
+        "instansi": "Dinas Peternakan"
+    },
+    {
+        "id": 74,
+        "nama": "Izin Usaha Rumah Pemondok (IURP)",
+        "instansi": "Dinas Sosial"
+    },
+    {
+        "id": 75,
+        "nama": "Izin Mempekerjakan Tenaga Kerja Asing",
+        "instansi": "Dinas Tenaga Kerja"
+    },
+    {
+        "id": 76,
+        "nama": "Izin Pendirian Lembaga Pelatihan Kerja (LPK)",
+        "instansi": "Dinas Tenaga Kerja"
     }
 ]

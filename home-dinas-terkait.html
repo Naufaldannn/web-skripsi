@@ -3,7 +3,7 @@
    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
+      <link rel="icon" type="image/x-icon" href="assets/img/logo.png" />
       <title>DPMPTSP - Dashboard Dinas</title>
       <link rel="stylesheet" href="assets/css/style.css" />
       <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
@@ -17,7 +17,7 @@
             </div>
             <div class="user-profile-nav">
                <div class="notification-wrapper" style="position: relative; display: flex; align-items: center">
-                  <i id="notifTrigger" class="fa-regular fa-bell" style="font-size: 1.6rem; cursor: pointer; color: white; margin-top: 4px;"></i>
+                  <i id="notifTrigger" class="fa-regular fa-bell" style="font-size: 1.6rem; cursor: pointer; color: white; margin-top: 4px"></i>
                   <span id="unreadBadge" class="unread-badge"></span>
 
                   <div class="notification-dropdown" id="notifDropdown">
@@ -70,6 +70,7 @@
             <div class="layanan-header">
                <h2>Layanan Surat</h2>
                <div class="action-buttons">
+                  <button class="btn-primary" id="filterModal">Filter</button>
                   <button class="btn-cancel" style="width: auto" onclick="location.reload()">Refresh</button>
                </div>
             </div>
@@ -349,6 +350,54 @@
                <p>Permohonan berhasil ditolak dan alasan penolakan telah terkirim ke pihak pemohon.</p>
                <button class="btn-login" id="btnRejectDone">Kembali</button>
             </div>
+         </div>
+      </div>
+
+      <div class="modal-overlay" id="modalFilterOverlay">
+         <div class="modal-content" style="max-width: 500px; padding: 0; flex-direction: column; border-radius: 10px">
+            <div class="modal-header-blue">
+               <div>
+                  <h3>Filter & Urutkan Data</h3>
+                  <span style="font-size: 0.8rem">Saring data permohonan sesuai kebutuhan</span>
+               </div>
+               <span class="x-close-btn" id="closeFilterModal">&times;</span>
+            </div>
+
+            <form id="formFilterDinas" style="padding: 20px; background: #fff">
+               <div class="form-group" style="margin-bottom: 15px">
+                  <label style="font-weight: 600; font-size: 0.9rem; margin-bottom: 5px; display: block">Tanggal Permohonan</label>
+                  <input type="date" id="filterTanggal" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px" />
+               </div>
+
+               <div class="form-group" style="margin-bottom: 15px">
+                  <label style="font-weight: 600; font-size: 0.9rem; margin-bottom: 5px; display: block">Instansi / Dinas</label>
+                  <select id="filterInstansi" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px">
+                     <option value="">Semua Instansi</option>
+                  </select>
+               </div>
+
+               <div class="form-group" style="margin-bottom: 15px">
+                  <label style="font-weight: 600; font-size: 0.9rem; margin-bottom: 5px; display: block">Status Dokumen</label>
+                  <select id="filterStatusProses" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px">
+                     <option value="">Semua Status</option>
+                     <option value="BELUM">Belum Diproses (TERKIRIM)</option>
+                     <option value="SUDAH">Sudah Diproses (DISETUJUI / DITOLAK)</option>
+                  </select>
+               </div>
+
+               <div class="form-group" style="margin-bottom: 20px">
+                  <label style="font-weight: 600; font-size: 0.9rem; margin-bottom: 5px; display: block">Urutkan Berdasarkan</label>
+                  <select id="filterSortUrutan" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px">
+                     <option value="terbaru" selected>Tanggal Terbaru</option>
+                     <option value="terlama">Tanggal Terlama</option>
+                  </select>
+               </div>
+
+               <div style="display: flex; gap: 10px; justify-content: flex-end">
+                  <button type="button" class="btn-cancel" id="btnResetFilter" style="margin: 0; width: auto; padding: 10px 20px">Reset Filter</button>
+                  <button type="submit" class="btn-submit" style="margin: 0; width: auto; padding: 10px 20px; background-color: #1a4fa0; border-color: #1a4fa0">Terapkan</button>
+               </div>
+            </form>
          </div>
       </div>
 
